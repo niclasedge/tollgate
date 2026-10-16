@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_version_string_passes_when_quoted_or_versioned
+-- input --
+PackageManagement "5.3.4.1" line
+-- must_not_contain --
+<redacted
+-- want --
+PackageManagement "5.3.4.1" line

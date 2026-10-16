@@ -1,0 +1,14 @@
+CREATE TABLE accounts (
+ id TEXT PRIMARY KEY,
+ filename TEXT NOT NULL UNIQUE,
+ name TEXT NOT NULL,
+ email TEXT NOT NULL,
+ token_cipher BLOB NOT NULL,
+ updated_at INTEGER NOT NULL
+) STRICT;
+CREATE TABLE account_audit (
+ id INTEGER PRIMARY KEY,
+ account_id TEXT NOT NULL,
+ at INTEGER NOT NULL,
+ result TEXT NOT NULL
+) STRICT;

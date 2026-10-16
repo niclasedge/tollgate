@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_private_ipv4_passes_clean_smart_filter
+-- input --
+Internal 10.0.0.5 reachable
+-- must_not_contain --
+<redacted
+-- want --
+Internal 10.0.0.5 reachable

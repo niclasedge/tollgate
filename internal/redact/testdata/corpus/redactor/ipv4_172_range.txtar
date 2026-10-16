@@ -1,0 +1,9 @@
+hook-redactor src/redactor.rs: ipv4_redacts_172_16_31_only
+-- input --
+pub=172.15.0.1 priv=172.16.0.1 priv=172.31.255.254 pub=172.32.0.1
+-- must_contain --
+172.16.0.1
+172.31.255.254
+-- must_not_contain --
+172.15.0.1
+172.32.0.1

@@ -1,0 +1,3 @@
+hook-redactor src/redactor.rs: scan_empty_input_no_findings
+-- input --
+-- want --

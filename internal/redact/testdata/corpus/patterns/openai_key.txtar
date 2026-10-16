@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: openai_key_matches
+-- input --
+OPENAI_API_KEY=sk-proj-abcdefghij1234567890XYZ
+-- must_contain --
+OPENAI_API_KEY=<redacted:api_key>
+-- must_not_contain --
+sk-proj-abcdefghij

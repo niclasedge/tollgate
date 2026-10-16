@@ -1,0 +1,131 @@
+# tollgate deployment (ADR-0001, ADR-0013). Start it with `just setup`.
+#
+# The host is in the Tailnet; no Tailscale container. tollgate and CLIProxyAPI
+# share one network namespace (owned by cliproxyapi):
+#   - Docker publishes port 8443 only on the host's Tailnet IP
+#     (TOLLGATE_HOST_IP, written to .env by deploy/setup.sh),
+#   - tollgate binds the container address and starts with published set to
+#     that Tailnet address (it refuses any other),
+#   - CLIProxyAPI binds only 127.0.0.1 and is not reachable through 8443.
+# The only other published port is 127.0.0.1:54545 of the one-off login
+# service (OAuth callback of `just login`).
+#
+# Secrets come from files in ${TOLLGATE_SECRETS_DIR:-./secrets} (ignored by
+# git), created by deploy/setup.sh. Never put a secret into this file.
+# CLIProxyAPI is built from the pinned upstream commit (ADR-0014). Its
+# entrypoint limits egress of the shared namespace to Anthropic and needs
+# NET_ADMIN for that; it drops all capabilities before CLIProxyAPI starts
+# (ADR-0017). tollgate gets no extra capabilities.
+x-cpa-build: &cpa-build
+  context: ./deploy/cliproxyapi
+
+x-cpa-env: &cpa-env
+  TOLLGATE_API_KEY_FILE: /run/secrets/tollgate_api_key
+  MANAGEMENT_SECRET_FILE: /run/secrets/management_secret
+
+services:
+  cliproxyapi:
+    build: *cpa-build
+    image: tollgate-cliproxyapi:local
+    # Owns the shared namespace, so it publishes tollgate's port. Only the
+    # host's Tailnet IP; CLIProxyAPI itself listens on 127.0.0.1:8317.
+    ports:
+      - "${TOLLGATE_HOST_IP:?run just setup (writes the host Tailnet IP to .env)}:8443:8443"
+    # Only for the egress rules of the entrypoint (ADR-0017).
+    cap_add: [NET_ADMIN]
+    environment: *cpa-env
+    secrets:
+      - tollgate_api_key
+      - management_secret
+    volumes:
+      # Only the token file of the active account belongs in here.
+      - cliproxyapi-auth:/data/auth
+    restart: unless-stopped
+
+  tollgate:
+    build:
+      context: .
+      dockerfile: deploy/tollgate/Dockerfile
+    image: tollgate:local
+    network_mode: "service:cliproxyapi"
+    depends_on:
+      cliproxyapi:
+        condition: service_healthy
+    environment:
+      TOLLGATE_LOG_LEVEL: ${TOLLGATE_LOG_LEVEL:-info}
+      TOLLGATE_REDACT_ENABLED: ${TOLLGATE_REDACT_ENABLED:-false}
+      TOLLGATE_COMPRESS_ENABLED: ${TOLLGATE_COMPRESS_ENABLED:-true}
+      TOLLGATE_PUBLISHED: ${TOLLGATE_HOST_IP:?run just setup}:8443
+      # Limit alerts go to the spool; the notifier sends them (ADR-0019).
+      TOLLGATE_ALERTS_SPOOL_DIR: /alerts
+      TOLLGATE_ALERTS_AUTO_SWITCH: ${TOLLGATE_ALERTS_AUTO_SWITCH:-false}
+      TOLLGATE_ALERTS_FIVE_HOUR_THRESHOLD: ${TOLLGATE_ALERTS_FIVE_HOUR_THRESHOLD:-90}
+    secrets:
+      - tollgate_api_key
+      - management_secret
+      - admin_token
+    volumes:
+      - tollgate-data:/data
+      - tollgate-alerts:/alerts
+    tmpfs:
+      - /run/tollgate:mode=0700,uid=10002,gid=10002
+    restart: unless-stopped
+
+  # Sends tollgate's limit alerts from the spool to Slack (ADR-0019). Default
+  # network with normal egress: the shared namespace above only reaches
+  # Anthropic (ADR-0017). Only this service gets the Slack secrets; empty
+  # files switch Slack off. No ports, no capabilities, never root.
+  notifier:
+    build:
+      context: .
+      dockerfile: deploy/tollgate/Dockerfile
+    image: tollgate:local
+    user: "10002:10002"
+    entrypoint:
+      - /usr/local/bin/tollgate
+      - notify
+      - --spool=/alerts
+      - --token-file=/run/secrets/slack_bot_token
+      - --channel-file=/run/secrets/slack_channel
+    secrets:
+      - slack_bot_token
+      - slack_channel
+    volumes:
+      - tollgate-alerts:/alerts
+    healthcheck:
+      disable: true
+    restart: unless-stopped
+
+  # One-off OAuth login (`just login`): writes the token into the auth volume.
+  cpa-login:
+    profiles: ["login"]
+    build: *cpa-build
+    image: tollgate-cliproxyapi:local
+    environment: *cpa-env
+    secrets:
+      - tollgate_api_key
+      - management_secret
+    volumes:
+      - cliproxyapi-auth:/data/auth
+    ports:
+      - "127.0.0.1:54545:54545"
+    # Same entrypoint and egress rules as cliproxyapi, only the login flags.
+    cap_add: [NET_ADMIN]
+    command: ["-claude-login", "-no-browser"]
+
+secrets:
+  tollgate_api_key:
+    file: ${TOLLGATE_SECRETS_DIR:-./secrets}/tollgate_api_key
+  management_secret:
+    file: ${TOLLGATE_SECRETS_DIR:-./secrets}/management_secret
+  admin_token:
+    file: ${TOLLGATE_SECRETS_DIR:-./secrets}/admin_token
+  slack_bot_token:
+    file: ${TOLLGATE_SECRETS_DIR:-./secrets}/slack_bot_token
+  slack_channel:
+    file: ${TOLLGATE_SECRETS_DIR:-./secrets}/slack_channel
+
+volumes:
+  cliproxyapi-auth:
+  tollgate-data:
+  tollgate-alerts:

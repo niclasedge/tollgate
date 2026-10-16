@@ -1,0 +1,18 @@
+{
+  "method": "POST",
+  "path": "/v1/messages",
+  "header": {
+    "Content-Type": "application/json",
+    "Anthropic-Version": "2023-06-01"
+  },
+  "body": {
+    "model": "claude-opus-5-5",
+    "messages": [
+      {"role": "user", "content": [{"type": "text", "text": "Status zu Projekt Falke bei der Muster GmbH? Ticket KD-123456, Ansprechpartnerin jane.roe@muster-gmbh.invalid, Antworten an noreply@github.com."}]},
+      {"role": "assistant", "content": [{"type": "tool_use", "id": "toolu_00000000000000000000000001", "name": "Bash", "input": {"command": "psql postgres://app:fakepw-0000@db.invalid:5432/app -c 'select 1'"}}]},
+      {"role": "user", "content": [{"type": "tool_result", "tool_use_id": "toolu_00000000000000000000000001", "content": "Projekt\nFalke: 1 Zeile, Kunde KD-654321"}]}
+    ],
+    "max_tokens": 1024,
+    "stream": true
+  }
+}

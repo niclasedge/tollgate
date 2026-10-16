@@ -1,0 +1,7 @@
+hook-redactor tests/integration.rs: pattern_pipe_simple
+-- input --
+key=sk-proj-abcdefghij1234567890XYZ end
+-- must_contain --
+key=<redacted:api_key> end
+-- must_not_contain --
+sk-proj-abc

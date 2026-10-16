@@ -1,0 +1,39 @@
+# CLIProxyAPI configuration template for tollgate (ADR-0001, point 4).
+# Contains NO secrets: the @...@ placeholders are filled in by render-config.sh
+# from secret files. Never commit a rendered config.
+config-version: 8
+
+server:
+  # Hard rule: CLIProxyAPI only listens on localhost.
+  host: "127.0.0.1"
+  port: 8317
+
+management:
+  # Management API is reachable from localhost only and needs the key.
+  allow-remote: false
+  secret-key: "@MANAGEMENT_SECRET@"
+  # No panel download from GitHub.
+  disable-control-panel: true
+
+access:
+  # Exactly one key, used by tollgate only. An empty list would open access.
+  api-keys:
+    - "@TOLLGATE_API_KEY@"
+
+requests:
+  # anthropic-ratelimit-* and request-id reach Claude Code.
+  passthrough-headers: true
+
+upstream:
+  claude:
+    # Safety net: never rewrite the system prompt (would break the prompt cache).
+    disable-claude-cloak-mode: true
+
+oauth:
+  # Must contain only the token file of the active account.
+  auth-dir: "@AUTH_DIR@"
+
+observability:
+  logs:
+    # No request bodies in the CLIProxyAPI log.
+    request-log: false

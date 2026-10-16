@@ -1,0 +1,21 @@
+diff --git a/internal/svc/format.go b/internal/svc/format.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/format.go
++++ b/internal/svc/format.go
+[tollgate: 1 Hunk ausgelassen (nur Whitespace, 19 Zeilen)]
+@@ -43,7 +43,7 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+[tollgate: 2 Hunks ausgelassen (nur Whitespace, 45 Zeilen)]
+diff --git a/internal/svc/save.go b/internal/svc/save.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/save.go
++++ b/internal/svc/save.go
+[tollgate: 1 Hunk ausgelassen (nur Whitespace, 91 Zeilen)]
+[tollgate: diff · 155 Zeilen ausgelassen · 4 Whitespace-Hunks]

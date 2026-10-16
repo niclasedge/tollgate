@@ -1,0 +1,18 @@
+dist/app.min.js:1:!function(e,t){var route0=function(a,b){return a.version>b.version?a:b};var metric1=function(a,b){return a.version>b.version?a:b};var session2=function(a,b){return a.version>b.versio…
+docs/CHANGELOG.md:3:## version 2.4.0
+docs/CHANGELOG.md:19:## version 2.3.1
+src/meta.ts:7:export const version = '2.4.0';
+dist/vendor.min.js:1:;)tnemucod,wodniw(};}b:a?noisrev.b>noisrev.a nruter{)b,a(noitcnuf=71noisses rav;}b:a?noisrev.b>noisrev.a nruter{)b,a(noitcnuf=61cirtem rav;}b:a?noisrev.b>noisrev.a nruter{)b,a(noi…
+src/plugins/plugin0.ts:4:  version: '1.0.0',
+src/plugins/plugin1.ts:5:  version: '2.1.0',
+src/plugins/plugin2.ts:6:  version: '3.2.0',
+src/plugins/plugin3.ts:7:  version: '1.3.0',
+src/plugins/plugin4.ts:8:  version: '2.4.0',
+src/plugins/plugin5.ts:9:  version: '3.5.0',
+src/plugins/plugin6.ts:10:  version: '1.6.0',
+src/plugins/plugin7.ts:11:  version: '2.7.0',
+src/plugins/plugin8.ts:12:  version: '3.8.0',
+src/plugins/plugin9.ts:13:  version: '1.9.0',
+src/plugins/plugin10.ts:14:  version: '2.10.0',
+src/plugins/plugin11.ts:15:  version: '3.11.0',
+[tollgate: search · 0 Zeilen ausgelassen · Zeilen gekürzt: 2]

@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs windows_home_dir_handles_forward_slashes; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+c:/Users/bob/AppData
+-- must_not_contain --
+<redacted
+-- want --
+c:/Users/bob/AppData

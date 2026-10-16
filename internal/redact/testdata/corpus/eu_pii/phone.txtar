@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: phone_de_pattern_no_longer_exists
+-- input --
+call +49 30 12345678 now
+-- must_contain --
++49 30 12345678
+-- must_not_contain --
+<redacted

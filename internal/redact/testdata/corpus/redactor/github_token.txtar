@@ -1,0 +1,9 @@
+hook-redactor src/redactor.rs: scan_emits_finding_per_match
+-- input --
+line 1
+line 2
+KEY=gh{{}}p_abcdefghijklmnopqrstuvwxyz1234567890
+-- must_contain --
+KEY=<redacted:api_key>
+-- must_not_contain --
+gh{{}}p_abc

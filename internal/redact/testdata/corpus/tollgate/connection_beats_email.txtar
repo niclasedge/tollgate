@@ -1,0 +1,9 @@
+tollgate (ADR-0005): user:pass@host.tld is a connection password, not an e-mail.
+-- input --
+postgres://app:s3cretpw@db.prod.io:5432/x
+-- must_not_contain --
+s3cretpw
+-- want --
+postgres://app:<redacted:connection_password>@db.prod.io:5432/x
+-- deviation --
+connection-url

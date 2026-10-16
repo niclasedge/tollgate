@@ -1,0 +1,9 @@
+tollgate (ADR-0005): Go \b is ASCII-only, so é before the address counts as a boundary.
+-- input --
+café8.8.8.8 ok
+-- must_not_contain --
+8.8.8.8
+-- want --
+café<redacted:ip> ok
+-- deviation --
+unicode

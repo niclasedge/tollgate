@@ -1,0 +1,9 @@
+tollgate (ADR-0005): Go \s does not include U+00A0, so the value runs on.
+-- input --
+password=abcdefgh rest
+-- must_not_contain --
+abcdefgh
+-- want --
+password=<redacted:api_key>
+-- deviation --
+unicode

@@ -1,0 +1,5 @@
+hook-redactor tests/red_team.rs §9: fp_test_iban_de00_passes_clean (iban_de is not ported)
+-- input --
+Test-IBAN: DE00 0000 0000 0000 0000 00
+-- must_not_contain --
+<redacted

@@ -1,0 +1,9 @@
+tollgate (ADR-0005): secret group; quotes and spacing of the prefix stay.
+-- input --
+password = "hunter2hunter2"
+-- must_not_contain --
+hunter2
+-- want --
+password = "<redacted:api_key>"
+-- deviation --
+prefix

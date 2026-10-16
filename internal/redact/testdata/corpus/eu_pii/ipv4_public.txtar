@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: ipv4_public_redacted
+-- input --
+client=8.8.8.8 ext
+-- must_contain --
+<redacted:ip>
+-- must_not_contain --
+8.8.8.8

@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: phone_numbers_pass_through_unredacted
+-- input --
+Tel: 0123 456789
+-- must_not_contain --
+<redacted
+-- want --
+Tel: 0123 456789

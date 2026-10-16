@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: phone_numbers_pass_through_unredacted
+-- input --
+0049 30 12345678
+-- must_not_contain --
+<redacted
+-- want --
+0049 30 12345678

@@ -1,0 +1,10 @@
+titel: "Vorher: CLIProxyAPI liegt als Kopie im Repo"
+format: [24, 8]
+dichte: kompakt
+bahnen: [Repo, Build]
+elemente:
+  - {id: los, typ: start, bahn: Repo, label: Checkout, nach: [kopie]}
+  - {id: kopie, bahn: Repo, label: third_party/cliproxyapi, sub: "1.785 Dateien, kein Patch", art: laut, nach: [ctx]}
+  - {id: ctx, bahn: Build, label: Named Context cpa-src, sub: docker-compose.yml, nach: [bau]}
+  - {id: bau, bahn: Build, label: go build ./cmd/server, sub: aus der Kopie, nach: [ende]}
+  - {id: ende, typ: ende, bahn: Build, label: Image}

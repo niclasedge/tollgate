@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_jwt_three_segments
+-- input --
+token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4ifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+-- must_contain --
+token=<redacted:jwt>
+-- must_not_contain --
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9

@@ -1,0 +1,84 @@
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // load
++	// load: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -38,7 +39,8 @@
+ func Load2(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // load
++	// load: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -68,7 +70,8 @@
+ func Load4(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // load
++	// load: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+diff --git a/internal/svc/save.go b/internal/svc/save.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/save.go
++++ b/internal/svc/save.go
+@@ -18,7 +18,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // save
++	// save: handle edge case
+ 
+ func Save1(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+diff --git a/web/package.json b/web/package.json
+index 1a2b3c4..5d6e7f8 100644
+--- a/web/package.json
++++ b/web/package.json
+@@ -2,7 +2,8 @@
+   "name": "web",
+   "version": "1.2.0",
+   "dependencies": {
+-    "svelte": "^5.1.0",
++    "svelte": "^5.2.0",
++    "tinro": "^0.6.12",
+     "vite": "^6.0.0"
+   }
+ }
+diff --git a/web/pnpm-lock.yaml b/web/pnpm-lock.yaml
+index a1b2c3d..e4f5a6b 100644
+--- a/web/pnpm-lock.yaml
++++ b/web/pnpm-lock.yaml
+[tollgate: 1 Hunk ausgelassen (Lockfile, 484 Zeilen)]
+diff --git a/go.sum b/go.sum
+index 1a2b3c4..5d6e7f8 100644
+--- a/go.sum
++++ b/go.sum
+[tollgate: 1 Hunk ausgelassen (Lockfile, 41 Zeilen)]
+diff --git a/docs/notes.md b/docs/notes.md
+index 1a2b3c4..5d6e7f8 100644
+--- a/docs/notes.md
++++ b/docs/notes.md
+@@ -1,5 +1,5 @@
+ # Notes
+ 
+-Old line
++New line
+ 
+ Tail
+[tollgate: diff · 525 Zeilen ausgelassen · Lockfiles: web/pnpm-lock.yaml, go.sum]

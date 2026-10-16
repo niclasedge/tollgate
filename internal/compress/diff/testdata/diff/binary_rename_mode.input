@@ -1,0 +1,56 @@
+diff --git a/assets/logo.png b/assets/logo.png
+index 1111111..2222222 100644
+Binary files a/assets/logo.png and b/assets/logo.png differ
+diff --git a/scripts/run.sh b/scripts/run.sh
+old mode 100644
+new mode 100755
+diff --git a/internal/old_name.go b/internal/new_name.go
+similarity index 92%
+rename from internal/old_name.go
+rename to internal/new_name.go
+index 3333333..4444444 100644
+--- a/internal/old_name.go
++++ b/internal/new_name.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // ren
++	// ren: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -26,7 +27,8 @@
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err) // ren
++	// ren: handle edge case
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+ 	for _, it := range res.Items {
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // x
++	// x: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/VERSION b/VERSION
+index 5555555..6666666 100644
+--- a/VERSION
++++ b/VERSION
+@@ -1 +1 @@
+-1.2.0
+\ No newline at end of file
++1.3.0
+\ No newline at end of file

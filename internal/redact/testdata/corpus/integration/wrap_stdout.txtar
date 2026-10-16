@@ -1,0 +1,7 @@
+hook-redactor tests/integration.rs: wrap_redacts_stdout
+-- input --
+key=sk-proj-FAKE12345678901234567890
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+sk-proj-FAKE

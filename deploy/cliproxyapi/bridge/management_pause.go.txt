@@ -1,0 +1,33 @@
+// tollgate extension, ADR-0016. Upstream remains MIT; see LICENSE in the image.
+package management
+
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+	"path/filepath"
+	"strings"
+)
+
+func (h *Handler) TollgateRefreshPause(c *gin.Context) {
+	var req struct {
+		Name   string `json:"name"`
+		Paused *bool  `json:"paused"`
+	}
+	if h.authManager == nil {
+		c.JSON(503, gin.H{"error": "auth manager unavailable"})
+		return
+	}
+	if c.ShouldBindJSON(&req) != nil || req.Paused == nil || isUnsafeAuthFileName(req.Name) || !strings.HasSuffix(req.Name, ".json") {
+		c.JSON(400, gin.H{"error": "invalid pause request"})
+		return
+	}
+	id := h.authIDForPath(filepath.Join(h.cfg.AuthDir, req.Name))
+	if target, ok := h.lookupAuthFile(req.Name, ""); ok && target != nil {
+		id = target.ID
+	}
+	if err := h.authManager.TollgatePauseRefresh(c.Request.Context(), id, *req.Paused); err != nil {
+		c.JSON(http.StatusConflict, gin.H{"error": "refresh pause failed"})
+		return
+	}
+	c.JSON(200, gin.H{"status": "ok"})
+}

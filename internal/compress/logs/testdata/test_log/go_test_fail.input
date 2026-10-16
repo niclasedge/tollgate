@@ -1,0 +1,77 @@
+?   	example.com/app/api	[no test files]
+?   	example.com/app/api/internal	[no test files]
+ok  	example.com/app/auth	0.332s
+--- FAIL: TestInvoiceTotal (0.00s)
+    invoice_test.go:58: total mismatch: got 1190, want 1199
+    invoice_test.go:59: tax rounding: got 190, want 199
+--- FAIL: TestInvoiceTotal/with_discount (0.00s)
+    invoice_test.go:81: discount not applied: got 1500, want 1350
+FAIL
+FAIL	example.com/app/billing	0.034s
+ok  	example.com/app/cache	0.155s
+ok  	example.com/app/cache/internal	0.405s
+ok  	example.com/app/cli	0.667s
+ok  	example.com/app/config	0.050s
+ok  	example.com/app/crypto	0.075s
+ok  	example.com/app/crypto/internal	0.841s
+?   	example.com/app/db	[no test files]
+ok  	example.com/app/events	0.549s
+ok  	example.com/app/export	0.097s
+ok  	example.com/app/export/internal	0.375s
+ok  	example.com/app/feed	0.597s
+ok  	example.com/app/gateway	0.060s
+ok  	example.com/app/health	0.520s
+ok  	example.com/app/health/internal	0.220s
+ok  	example.com/app/http	0.039s
+?   	example.com/app/i18n	[no test files]
+ok  	example.com/app/import	0.089s
+ok  	example.com/app/import/internal	0.445s
+ok  	example.com/app/jobs	0.429s
+ok  	example.com/app/keys	0.072s
+ok  	example.com/app/limits	0.247s
+ok  	example.com/app/limits/internal	0.093s
+ok  	example.com/app/mail	0.565s
+ok  	example.com/app/metrics	0.435s
+?   	example.com/app/migrate	[no test files]
+?   	example.com/app/migrate/internal	[no test files]
+ok  	example.com/app/models	0.061s
+ok  	example.com/app/notify	0.847s
+--- FAIL: TestOrderRetryBackoff (0.21s)
+    retry_test.go:44: expected 3 attempts, got 2
+FAIL
+FAIL	example.com/app/orders	0.231s
+ok  	example.com/app/orders/internal	0.580s
+ok  	example.com/app/pay	0.127s
+ok  	example.com/app/plugins	0.229s
+ok  	example.com/app/queue	0.646s
+ok  	example.com/app/queue/internal	0.643s
+?   	example.com/app/ratelimit	[no test files]
+ok  	example.com/app/render	0.597s
+ok  	example.com/app/reports	0.064s
+ok  	example.com/app/reports/internal	0.591s
+ok  	example.com/app/retry	0.600s
+ok  	example.com/app/router	0.407s
+ok  	example.com/app/scheduler	0.051s
+ok  	example.com/app/scheduler/internal	0.227s
+ok  	example.com/app/search	0.048s
+?   	example.com/app/session	[no test files]
+ok  	example.com/app/sharding	0.571s
+ok  	example.com/app/sharding/internal	0.880s
+ok  	example.com/app/sitemap	0.137s
+ok  	example.com/app/storage	0.297s
+ok  	example.com/app/store	0.430s
+ok  	example.com/app/store/internal	0.148s
+ok  	example.com/app/stream	0.554s
+ok  	example.com/app/sync	0.121s
+?   	example.com/app/tenant	[no test files]
+?   	example.com/app/tenant/internal	[no test files]
+ok  	example.com/app/tokens	0.585s
+ok  	example.com/app/tracing	0.316s
+ok  	example.com/app/uploads	0.574s
+ok  	example.com/app/uploads/internal	0.836s
+ok  	example.com/app/users	0.699s
+ok  	example.com/app/validate	0.186s
+ok  	example.com/app/webhook	0.106s
+ok  	example.com/app/webhook/internal	0.596s
+?   	example.com/app/worker	[no test files]
+FAIL

@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: email_matches_plus_tag_and_subdomain
+-- input --
+from=user.name+tag@mail.example-corp.io;
+-- must_contain --
+from=<redacted:email>;
+-- must_not_contain --
+user.name

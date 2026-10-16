@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: ipv4_pattern_matches_dotted_quad (filtered as private)
+-- input --
+see 192.168.1.1 done
+-- must_not_contain --
+<redacted

@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_private_ipv4_passes_clean_smart_filter
+-- input --
+RFC1918-edge 172.31.255.254 ok
+-- must_not_contain --
+<redacted
+-- want --
+RFC1918-edge 172.31.255.254 ok

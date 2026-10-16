@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_private_ipv4_passes_clean_smart_filter
+-- input --
+Server-IP 192.168.1.1 ist down
+-- must_not_contain --
+<redacted
+-- want --
+Server-IP 192.168.1.1 ist down

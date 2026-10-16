@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_uuid_and_hex_pass_clean
+-- input --
+trace-id: 550e8400-e29b-41d4-a716-446655440000
+-- must_not_contain --
+<redacted
+-- want --
+trace-id: 550e8400-e29b-41d4-a716-446655440000

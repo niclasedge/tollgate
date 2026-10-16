@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_example_domains_pass_clean_via_whitelist
+-- input --
+test against example.test:8080
+-- must_not_contain --
+<redacted
+-- want --
+test against example.test:8080

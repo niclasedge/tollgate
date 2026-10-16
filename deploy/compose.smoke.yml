@@ -1,0 +1,15 @@
+# Override for the smoke test without a Tailnet (deploy/smoke.sh, `just smoke`).
+# Docker publishes tollgate on 127.0.0.1 instead of the host's Tailnet IP.
+# tollgate still starts in production mode: it binds the container address
+# and gets a stand-in Tailnet address as published (no dev flag), so the
+# binding check of ADR-0013 runs as in production. Never use in production.
+services:
+  cliproxyapi:
+    ports: !override
+      - "127.0.0.1:${TOLLGATE_SMOKE_PORT:-18443}:8443"
+    restart: "no"
+
+  tollgate:
+    environment:
+      TOLLGATE_PUBLISHED: "100.64.0.1:8443"
+    restart: "no"

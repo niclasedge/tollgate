@@ -1,0 +1,67 @@
+// tollgate extension, ADR-0016. Upstream remains MIT; see LICENSE in the image.
+package auth
+
+import (
+	"context"
+	"errors"
+	"sync"
+	"time"
+)
+
+type tollgatePauseKey struct {
+	manager *Manager
+	id      string
+}
+
+var tollgatePauses sync.Map
+
+func (m *Manager) tollgateRefreshPaused(id string) bool {
+	_, ok := tollgatePauses.Load(tollgatePauseKey{m, id})
+	return ok
+}
+
+// TollgatePauseRefresh waits for an ongoing refresh, including its persistence,
+// and then prevents any future refresh from entering the executor. The caller
+// must gate inference requests as well and resume after activating a file.
+func (m *Manager) TollgatePauseRefresh(ctx context.Context, id string, paused bool) error {
+	if m == nil || id == "" {
+		return errors.New("invalid credential")
+	}
+	value, _ := m.refreshLocks.LoadOrStore(id, &authRefreshLock{})
+	lock, ok := value.(*authRefreshLock)
+	if !ok || lock == nil {
+		return errors.New("refresh lock unavailable")
+	}
+	for !lock.mu.TryLock() {
+		select {
+		case <-ctx.Done():
+			return errors.New("refresh pause timed out")
+		case <-time.After(5 * time.Millisecond):
+		}
+	}
+	defer lock.mu.Unlock()
+	if err := ctx.Err(); err != nil {
+		return errors.New("refresh pause canceled")
+	}
+	key := tollgatePauseKey{m, id}
+	if !paused {
+		tollgatePauses.Delete(key)
+		return nil
+	}
+	m.mu.RLock()
+	current := m.auths[id].Clone()
+	m.mu.RUnlock()
+	if current == nil {
+		// Reserve the same file-derived auth ID before upload so registration
+		// cannot start a background refresh before verification.
+		tollgatePauses.Store(key, true)
+		return nil
+	}
+	// Retry persistence explicitly: upstream refresh may only warn on a failed
+	// write. Never acknowledge the barrier before the latest token reaches disk.
+	if err := m.persist(ctx, current); err != nil {
+		return errors.New("credential snapshot could not be persisted")
+	}
+	tollgatePauses.Store(key, true)
+	return nil
+}

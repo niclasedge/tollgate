@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_anthropic_key
+-- input --
+Token: sk-{{}}ant-api03-ABCDEF1234567890abcdef1234567890ABCDEF1234567890abcdef1234567890ABCDEF12-XXXXXX_aa
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+sk-{{}}ant-api03-ABCDEF

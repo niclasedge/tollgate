@@ -1,0 +1,17 @@
+--- FAIL: TestInvoiceTotal (0.00s)
+    invoice_test.go:58: total mismatch: got 1190, want 1199
+    invoice_test.go:59: tax rounding: got 190, want 199
+--- FAIL: TestInvoiceTotal/with_discount (0.00s)
+    invoice_test.go:81: discount not applied: got 1500, want 1350
+FAIL
+FAIL	example.com/app/billing	0.034s
+--- FAIL: TestOrderRetryBackoff (0.21s)
+    retry_test.go:44: expected 3 attempts, got 2
+FAIL
+FAIL	example.com/app/orders	0.231s
+ok  	example.com/app/validate	0.186s
+ok  	example.com/app/webhook	0.106s
+ok  	example.com/app/webhook/internal	0.596s
+?   	example.com/app/worker	[no test files]
+FAIL
+[tollgate: test_log · 61 Zeilen ausgelassen · 3 Fehlschläge · 54 Pakete ok]

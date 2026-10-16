@@ -1,0 +1,12 @@
+hook-redactor tests/red_team.rs §9: prompt_allows_already_redacted_paste (as pattern input).
+Rust labels are not placeholders of the ADR-0006 grammar, so they match again;
+after normalisation both sides agree.
+-- input --
+APP_CLIENT_SECRET=<redacted:client_secret>
+Authorization: <redacted:auth_header>
+-- must_not_contain --
+<redacted:client_secret>
+<redacted:auth_header>
+-- want --
+APP_CLIENT_SECRET=<redacted:api_key>
+Authorization: <redacted:api_key>

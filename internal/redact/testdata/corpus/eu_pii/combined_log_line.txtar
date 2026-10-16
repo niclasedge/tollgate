@@ -1,0 +1,15 @@
+hook-redactor tests/eu_pii_patterns.rs: fp_filter_combined_log_line
+-- input --
+user 8.8.8.8 wrote conn=postgres://u:p@db/x with TenantId: 11111111-2222-3333-4444-555555555555 home 192.168.1.1
+-- must_contain --
+<redacted:ip>
+<redacted:connection_password>
+192.168.1.1
+-- must_not_contain --
+8.8.8.8
+11111111-2222-3333-4444-555555555555
+-- want --
+user <redacted:ip> wrote conn=postgres://u:<redacted:connection_password>@db/x with TenantId: <redacted:api_key> home 192.168.1.1
+-- deviation --
+connection-url
+prefix

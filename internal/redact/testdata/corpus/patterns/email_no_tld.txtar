@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: email_negative_no_tld
+-- input --
+user@hostname
+-- must_not_contain --
+<redacted

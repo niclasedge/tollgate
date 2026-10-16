@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: email_negative_no_at_sign
+-- input --
+plain text without an at sign
+-- must_not_contain --
+<redacted

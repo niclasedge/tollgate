@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: ipv6_pattern_finds_loopback_string
+-- input --
+::1
+-- must_not_contain --
+<redacted

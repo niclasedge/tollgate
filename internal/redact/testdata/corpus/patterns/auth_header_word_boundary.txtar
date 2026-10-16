@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: auth_header_negative_word_boundary
+-- input --
+Reauthorization: see notes
+-- must_not_contain --
+<redacted

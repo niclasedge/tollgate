@@ -1,0 +1,11 @@
+hook-redactor src/patterns.rs: auth_header_matches_x_auth_token
+-- input --
+x-auth-token: my-secret-token-value
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+my-secret-token-value
+-- want --
+x-auth-token: <redacted:api_key>
+-- deviation --
+overlap

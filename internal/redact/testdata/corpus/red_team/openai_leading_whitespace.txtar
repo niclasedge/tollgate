@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_openai_with_leading_whitespace
+-- input --
+    sk-proj-AbCdEfGhIjKlMnOpQrStUvWxYz0123456789AbCdEfGhIjKlMn
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+sk-proj-AbCd

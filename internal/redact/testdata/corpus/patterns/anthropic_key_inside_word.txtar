@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: anthropic_key_negative_inside_word
+-- input --
+see flask-anthropic-integration-runner-notes here
+-- must_not_contain --
+<redacted

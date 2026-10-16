@@ -1,0 +1,9 @@
+tollgate (ADR-0005): Go \s does not include U+2003, so Bearer and value are not separated.
+-- input --
+Bearer abcdefghijklmnopqrstu
+-- must_not_contain --
+<redacted
+-- want --
+Bearer abcdefghijklmnopqrstu
+-- deviation --
+unicode

@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: fp_filter_does_not_break_existing_patterns
+-- input --
+OPENAI_API_KEY=sk-proj-abcdefghij1234567890
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+sk-proj

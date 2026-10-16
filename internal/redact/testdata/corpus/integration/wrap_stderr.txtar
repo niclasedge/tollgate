@@ -1,0 +1,9 @@
+hook-redactor tests/integration.rs: wrap_redacts_stderr
+-- input --
+OK
+ERR=AKIAIOSFODNN7EXAMPLE
+-- must_contain --
+OK
+ERR=<redacted:api_key>
+-- must_not_contain --
+AKIAIOSFODNN7EXAMPLE

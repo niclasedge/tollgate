@@ -1,0 +1,10 @@
+hook-redactor src/redactor.rs: is_false_positive_localhost_exact.
+A connection URL without password stays readable in Go.
+-- input --
+postgres://localhost/db
+-- must_not_contain --
+<redacted
+-- want --
+postgres://localhost/db
+-- deviation --
+connection-url

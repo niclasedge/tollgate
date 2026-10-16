@@ -1,0 +1,7 @@
+hook-redactor src/redactor.rs: ipv6_link_local_passes_through
+-- input --
+interface fe80::1234:abcd:5678:9ef0 up
+-- must_contain --
+fe80::1234
+-- must_not_contain --
+<redacted

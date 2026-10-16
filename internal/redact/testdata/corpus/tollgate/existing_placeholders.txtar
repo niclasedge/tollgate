@@ -1,0 +1,7 @@
+tollgate (ADR-0005): placeholders of the ADR-0006 grammar are never matched again.
+-- input --
+password=<redacted:api_key_1>
+Authorization: <redacted:api_key_2>
+-- want --
+password=<redacted:api_key_1>
+Authorization: <redacted:api_key_2>

@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_aws_access_key_anywhere_in_line
+-- input --
+exporting key AKIAIOSFODNN7EXAMPLE for service
+-- must_contain --
+exporting key <redacted:api_key> for service
+-- must_not_contain --
+AKIAIOSFODNN7EXAMPLE

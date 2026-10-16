@@ -1,0 +1,12 @@
+titel: "Nachher: der Build holt CLIProxyAPI gepinnt aus dem Upstream"
+format: [24, 9]
+dichte: kompakt
+vergleich: ist.prozess.yaml
+bahnen: [Repo, Build]
+elemente:
+  - {id: los, typ: start, bahn: Repo, label: Checkout, nach: [kopie]}
+  - {id: kopie, bahn: Repo, label: ARG CPA_VERSION, sub: "ein Commit, eine Stelle", art: laut, nach: [bau]}
+  - {id: bau, bahn: Build, label: "go install …/cmd/server@pin", sub: "CGO_ENABLED=0, sum.golang.org", nach: [ende]}
+  - {id: ende, typ: ende, bahn: Build, label: "Image mit LICENSE"}
+  - {id: cpa, bahn: Repo, label: make cpa, sub: liest denselben Pin, nach: [smoke]}
+  - {id: smoke, typ: ende, bahn: Build, label: Smoke-Test, sub: lokal und in CI}

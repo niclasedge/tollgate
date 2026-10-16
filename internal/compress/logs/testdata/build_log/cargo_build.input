@@ -1,0 +1,93 @@
+    Updating crates.io index
+ Downloading crates ...
+  Downloaded proc-macro2 v1.0.3
+  Downloaded unicode-ident v1.1.4
+  Downloaded quote v1.2.5
+  Downloaded syn v1.3.6
+  Downloaded serde_derive v1.4.7
+  Downloaded serde v1.5.8
+  Downloaded itoa v1.6.9
+  Downloaded ryu v1.7.10
+  Downloaded serde_json v1.8.11
+  Downloaded libc v1.9.12
+   Compiling proc-macro2 v1.0.3
+   Compiling unicode-ident v2.1.4
+   Compiling quote v3.2.5
+   Compiling syn v1.3.6
+   Compiling serde_derive v2.4.7
+   Compiling serde v3.5.8
+   Compiling itoa v1.6.9
+   Compiling ryu v2.7.10
+   Compiling serde_json v3.8.11
+   Compiling libc v1.9.12
+   Compiling cfg-if v2.10.13
+   Compiling memchr v3.11.14
+   Compiling bytes v1.12.15
+   Compiling pin-project-lite v2.13.16
+   Compiling mio v3.14.17
+   Compiling socket2 v1.15.18
+   Compiling tokio-macros v2.16.19
+   Compiling tokio v3.17.20
+   Compiling hashbrown v1.18.21
+   Compiling indexmap v2.19.22
+   Compiling thiserror-impl v3.20.23
+   Compiling thiserror v1.21.24
+   Compiling error-chain v2.22.25
+   Compiling tracing-core v3.23.26
+   Compiling tracing v1.24.27
+   Compiling regex-syntax v2.25.28
+   Compiling regex-automata v3.26.29
+   Compiling regex v1.27.30
+   Compiling once_cell v2.28.31
+   Compiling smallvec v3.29.32
+   Compiling parking_lot_core v1.30.33
+   Compiling lock_api v2.31.34
+   Compiling parking_lot v3.32.35
+   Compiling http v1.33.36
+   Compiling httparse v2.34.37
+   Compiling hyper v3.35.38
+   Compiling app v0.4.0 (/src/app)
+warning: unused variable: `timeout`
+  --> src/server.rs:41:9
+   |
+41 |     let timeout = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_timeout`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `retries`
+  --> src/config.rs:17:9
+   |
+17 |     let retries = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_retries`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `timeout`
+  --> src/server.rs:41:9
+   |
+41 |     let timeout = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_timeout`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: `app` (lib) generated 2 warnings (1 duplicate)
+   Compiling app v0.4.0 (/src/app)
+warning: unused variable: `args`
+  --> src/main.rs:9:9
+   |
+9 |     let args = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_args`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `retries`
+  --> src/config.rs:17:9
+   |
+17 |     let retries = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_retries`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: `app` (bin "app") generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 41.37s

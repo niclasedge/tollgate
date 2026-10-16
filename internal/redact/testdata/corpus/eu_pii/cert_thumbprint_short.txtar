@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: cert_thumbprint_short_passes
+-- input --
+Thumbprint: 0123 short
+-- must_contain --
+0123 short
+-- must_not_contain --
+<redacted

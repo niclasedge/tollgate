@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs unix_home_dir_redacts_linux_home_path; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+error in /home/bob/.bashrc
+-- must_not_contain --
+<redacted
+-- want --
+error in /home/bob/.bashrc

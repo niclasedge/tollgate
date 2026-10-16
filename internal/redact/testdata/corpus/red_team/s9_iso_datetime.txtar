@@ -1,0 +1,6 @@
+hook-redactor tests/red_team.rs §9: fp_iso_datetime_with_timezone_passes_clean.
+The ipv6 regex matches 20:50:00, the IPv6 filter drops it.
+-- input --
+Stand: 2026-04-28T20:50:00+02:00
+-- must_not_contain --
+<redacted

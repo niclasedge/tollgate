@@ -1,0 +1,5 @@
+PASS
+ok  	example.com/app/feed	0.250s
+PASS
+ok  	example.com/app/gateway	0.084s
+[tollgate: test_log · 260 Zeilen ausgelassen · 12 Pakete ok]

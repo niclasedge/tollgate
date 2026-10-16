@@ -1,0 +1,11 @@
+hook-redactor src/patterns.rs: azure_cred_guid_matches_client_id_quoted
+-- input --
+"ClientId": "aabbccdd-1122-3344-5566-778899aabbcc"
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+aabbccdd-1122
+-- want --
+"ClientId": "<redacted:api_key>"
+-- deviation --
+prefix

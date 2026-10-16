@@ -1,0 +1,11 @@
+hook-redactor src/patterns.rs: cert_thumbprint_matches_quoted_lowercase
+-- input --
+Thumbprint = "0123456789abcdef0123456789abcdef01234567"
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+0123456789abcdef
+-- want --
+Thumbprint = "<redacted:api_key>"
+-- deviation --
+prefix

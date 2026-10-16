@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs crypto_container_path_matches_kdbx_unix; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+ls /srv/x/Passwords/vault.kdbx ok
+-- must_not_contain --
+<redacted
+-- want --
+ls /srv/x/Passwords/vault.kdbx ok

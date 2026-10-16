@@ -1,0 +1,42 @@
+pkg/api/client.go
+23:	return fmt.Errorf("render buffer: %w", err)
+45:	return fmt.Errorf("parse cache: %w", err)
+50:	return fmt.Errorf("dispatch cache: %w", err)
+71:	return fmt.Errorf("parse session: %w", err)
+76:	return fmt.Errorf("parse batch: %w", err)
+100:	return fmt.Errorf("parse config: %w", err)
+104:	return fmt.Errorf("validate batch: %w", err)
+129:	return fmt.Errorf("validate policy: %w", err)
+… pkg/api/client.go: 10 weitere Treffer
+
+pkg/api/errors.go
+11:	return fmt.Errorf("refresh request: %w", err)
+32:	return fmt.Errorf("parse policy: %w", err)
+33:	return fmt.Errorf("load token: %w", err)
+50:	return fmt.Errorf("refresh request: %w", err)
+64:	return fmt.Errorf("flush session: %w", err)
+82:	return fmt.Errorf("collect buffer: %w", err)
+101:	return fmt.Errorf("refresh buffer: %w", err)
+124:	return fmt.Errorf("load session: %w", err)
+… pkg/api/errors.go: 3 weitere Treffer
+
+pkg/api/retry.go
+20:	return fmt.Errorf("encode token: %w", err)
+28:	return fmt.Errorf("resolve session: %w", err)
+57:	return fmt.Errorf("render route: %w", err)
+
+pkg/util/strings.go
+20:	return fmt.Errorf("flush route: %w", err)
+43:	return fmt.Errorf("validate cache: %w", err)
+70:	return fmt.Errorf("validate route: %w", err)
+77:	return fmt.Errorf("render session: %w", err)
+82:	return fmt.Errorf("encode metric: %w", err)
+107:	return fmt.Errorf("parse session: %w", err)
+129:	return fmt.Errorf("load metric: %w", err)
+150:	return fmt.Errorf("dispatch policy: %w", err)
+… pkg/util/strings.go: 6 weitere Treffer
+
+pkg/util/paths.go
+21:	return fmt.Errorf("refresh session: %w", err)
+33:	return fmt.Errorf("parse config: %w", err)
+[tollgate: search · 19 Zeilen ausgelassen · 19 Treffer in 3 Dateien ausgelassen]

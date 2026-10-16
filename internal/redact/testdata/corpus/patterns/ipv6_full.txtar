@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: ipv6_pattern_matches_full_address
+-- input --
+2001:db8:85a3::8a2e:370:7334
+-- must_contain --
+<redacted:ip>
+-- must_not_contain --
+2001:db8

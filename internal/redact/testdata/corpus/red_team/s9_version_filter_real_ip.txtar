@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_version_filter_does_not_mask_real_ips
+-- input --
+client=8.8.4.4 down
+-- must_contain --
+client=<redacted:ip> down
+-- must_not_contain --
+8.8.4.4

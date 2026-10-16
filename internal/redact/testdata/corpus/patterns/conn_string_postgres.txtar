@@ -1,0 +1,12 @@
+hook-redactor src/patterns.rs: conn_string_matches_postgres.
+Go replaces only the password (ADR-0005, connection_urls).
+-- input --
+DATABASE_URL=postgres://admin:s3cret@db:5432/app extra
+-- must_contain --
+<redacted:connection_password>
+-- must_not_contain --
+s3cret
+-- want --
+DATABASE_URL=postgres://admin:<redacted:connection_password>@db:5432/app extra
+-- deviation --
+connection-url

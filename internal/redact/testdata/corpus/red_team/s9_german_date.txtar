@@ -1,0 +1,8 @@
+hook-redactor tests/red_team.rs §9: fp_german_date_dd_mm_yyyy_is_redacted_documented_fp.
+birthdate_de is not ported (ADR-0005), so the date stays.
+-- input --
+Termin am 28.04.2026 um 10 Uhr
+-- must_contain --
+28.04.2026
+-- must_not_contain --
+<redacted

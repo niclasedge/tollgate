@@ -1,0 +1,29 @@
+[Template T1: npm http fetch GET 200 <*> <*> (cache <*>] (30 Zeilen)
+https://registry.npmjs.org/debug 168ms revalidated)
+https://registry.npmjs.org/ms 37ms hit)
+[… 26 weitere]
+https://registry.npmjs.org/cliui 66ms revalidated)
+https://registry.npmjs.org/yargs 92ms hit)
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+[Template T2: npm http fetch GET 200 <*> <*> (cache <*>] (30 Zeilen)
+https://registry.npmjs.org/debug/-/debug-3.6.17.tgz 114ms miss)
+https://registry.npmjs.org/ms/-/ms-3.8.19.tgz 187ms hit)
+[… 26 weitere]
+https://registry.npmjs.org/cliui/-/cliui-8.5.4.tgz 160ms hit)
+https://registry.npmjs.org/yargs/-/yargs-1.0.20.tgz 46ms hit)
+
+added 312 packages, and audited 313 packages in 9s
+
+64 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+[tollgate: build_log · 50 Zeilen ausgelassen · 2 Warnungen zusammengefasst · 60 gleichartige Zeilen]

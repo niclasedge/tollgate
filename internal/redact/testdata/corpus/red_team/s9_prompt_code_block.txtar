@@ -1,0 +1,11 @@
+hook-redactor tests/red_team.rs §9: prompt_allows_multiline_with_code_block_and_dates (as pattern input)
+-- input --
+Stand 2026-04-28T20:50:00+02:00:
+
+```rust
+fn foo() -> i32 { 42 }
+```
+
+Tests: 192.168.1.1 ok, v1.2.3 deployed.
+-- must_not_contain --
+<redacted

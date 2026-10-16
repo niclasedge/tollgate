@@ -1,0 +1,70 @@
+/* Design tokens. One accent blue, otherwise greys; light by default, dark via
+   data-theme or (without an explicit choice) the system preference. Charts
+   tell accounts apart by the series colors, a categorical palette checked for
+   color vision deficiency against the card surface in both modes (#128). */
+:root {
+  --c-bg: #ffffff;
+  --c-sidebar: #f6f7f9;
+  --c-surface: #ffffff;
+  --c-text: #1d1f23;
+  --c-muted: #6b7280;
+  --c-line: #e7e9ee;
+  --c-hover: #eceef2;
+  --c-accent: #2f6fed;
+  --c-accent-soft: #e6eefd;
+  --c-on-accent: #ffffff;
+  --c-ok: #3bb273;
+  --c-warn: #e5a50a;
+  --c-error: #e04f4f;
+  --c-idle: #b8bdc7;
+  --c-series-1: #2a78d6; --c-series-2: #eb6834; --c-series-3: #1baf7a; --c-series-4: #eda100; --c-series-5: #e87ba4;
+  --radius: 0.625rem;
+  --sidebar-w: 4.25rem;
+  --sidebar-wide: 13.5rem;
+  --t: 150ms;
+  --font: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
+  --c-bg: #17181b; --c-sidebar: #1d1e22; --c-surface: #1d1e22; --c-text: #eceef2; --c-muted: #9097a3;
+  --c-line: #2a2c31; --c-hover: #2a2c32; --c-accent: #6ea0ff; --c-on-accent: #10131a; --c-accent-soft: #1f2c47; --c-idle: #4b5058;
+  --c-series-1: #3987e5; --c-series-2: #d95926; --c-series-3: #199e70; --c-series-4: #c98500; --c-series-5: #d55181;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --c-bg: #17181b; --c-sidebar: #1d1e22; --c-surface: #1d1e22; --c-text: #eceef2; --c-muted: #9097a3;
+    --c-line: #2a2c31; --c-hover: #2a2c32; --c-accent: #6ea0ff; --c-on-accent: #10131a; --c-accent-soft: #1f2c47; --c-idle: #4b5058;
+    --c-series-1: #3987e5; --c-series-2: #d95926; --c-series-3: #199e70; --c-series-4: #c98500; --c-series-5: #d55181;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--c-bg); color: var(--c-text); font: 16px/1.5 var(--font); -webkit-font-smoothing: antialiased; transition: background var(--t), color var(--t); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Shared view styles */
+.page-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: 0 0 1.5rem; }
+.page-head h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; letter-spacing: -0.02em; margin: 0; }
+.muted { color: var(--c-muted); }
+.err { color: var(--c-error); }
+.mono { font-family: var(--mono); font-size: 0.85em; }
+.num { font-variant-numeric: tabular-nums; text-align: right; }
+.btn { font: inherit; font-size: 0.9rem; padding: 0.4rem 0.85rem; border: 1px solid var(--c-line); border-radius: var(--radius); background: var(--c-surface); color: var(--c-text); cursor: pointer; transition: background var(--t); }
+.btn:hover { background: var(--c-hover); }
+.btn.primary { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-on-accent); }
+.btn.danger { color: var(--c-error); }
+.btn:disabled { opacity: 0.4; cursor: default; }
+.btn:focus-visible, .seg button:focus-visible, .row-btn:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
+.seg { display: inline-flex; background: var(--c-hover); border-radius: var(--radius); padding: 0.15rem; }
+.seg button { font: inherit; font-size: 0.85rem; border: 0; background: none; color: var(--c-muted); padding: 0.3rem 0.8rem; border-radius: calc(var(--radius) - 0.15rem); cursor: pointer; }
+.seg button[aria-pressed='true'] { background: var(--c-surface); color: var(--c-text); }
+.conn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--c-muted); }
+.table-wrap { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.tbl th { text-align: left; font-weight: 500; font-size: 0.8rem; color: var(--c-muted); padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--c-line); }
+.tbl th.num { text-align: right; }
+.tbl td { padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--c-line); }
+.section { margin: 2rem 0 0.5rem; font-size: 1.1rem; font-weight: 600; }

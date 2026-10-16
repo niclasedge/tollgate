@@ -1,0 +1,49 @@
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Progress: resolved 56, reused 44, downloaded 8, added 39
+Progress: resolved 95, reused 76, downloaded 14, added 66
+Progress: resolved 148, reused 118, downloaded 22, added 103
+Progress: resolved 199, reused 159, downloaded 29, added 139
+Progress: resolved 240, reused 192, downloaded 36, added 168
+Progress: resolved 288, reused 230, downloaded 43, added 201
+Progress: resolved 326, reused 260, downloaded 48, added 228
+Progress: resolved 384, reused 307, downloaded 57, added 268
+Progress: resolved 408, reused 326, downloaded 61, added 285
+Progress: resolved 435, reused 348, downloaded 65, added 304
+Progress: resolved 487, reused 389, downloaded 73, added 340
+Progress: resolved 533, reused 426, downloaded 79, added 373
+Progress: resolved 563, reused 450, downloaded 84, added 394
+Progress: resolved 604, reused 483, downloaded 90, added 422
+Progress: resolved 633, reused 506, downloaded 94, added 443
+Progress: resolved 684, reused 547, downloaded 102, added 478
+Progress: resolved 730, reused 584, downloaded 109, added 510
+Progress: resolved 752, reused 601, downloaded 112, added 526
+Progress: resolved 776, reused 620, downloaded 116, added 543
+Progress: resolved 831, reused 664, downloaded 124, added 581
+Progress: resolved 887, reused 709, downloaded 133, added 620
+Progress: resolved 927, reused 741, downloaded 139, added 648
+Progress: resolved 968, reused 774, downloaded 145, added 677
+Progress: resolved 1010, reused 808, downloaded 151, added 707
+Progress: resolved 1068, reused 854, downloaded 160, added 747
+Progress: resolved 1119, reused 895, downloaded 167, added 783
+ WARN  deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+ WARN  deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+ WARN  deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+ WARN  deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+ WARN  deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+Packages: +842
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 842, reused 790, downloaded 52, added 842, done
+
+dependencies:
++ react 18.3.1
++ react-dom 18.3.1
++ zod 3.23.8
+
+devDependencies:
++ eslint 8.57.1
++ typescript 5.6.2
++ vite 5.4.8
++ vitest 2.1.1
+
+Done in 14.2s

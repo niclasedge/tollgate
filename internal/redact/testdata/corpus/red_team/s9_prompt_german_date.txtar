@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: prompt_blocks_german_date_documented_fp (birthdate_de is not ported)
+-- input --
+Geburtstag am 28.04.1990
+-- must_contain --
+28.04.1990
+-- must_not_contain --
+<redacted

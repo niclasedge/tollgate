@@ -1,0 +1,264 @@
+=== RUN   TestApiCase1
+--- PASS: TestApiCase1 (0.01s)
+=== RUN   TestApiCase2
+--- PASS: TestApiCase2 (0.02s)
+=== RUN   TestApiCase3
+--- PASS: TestApiCase3 (0.03s)
+=== RUN   TestApiCase3/error
+    --- PASS: TestApiCase3/error (0.00s)
+=== RUN   TestApiCase4
+--- PASS: TestApiCase4 (0.04s)
+=== RUN   TestApiCase5
+--- PASS: TestApiCase5 (0.00s)
+=== RUN   TestApiCase6
+--- PASS: TestApiCase6 (0.01s)
+=== RUN   TestApiCase6/error
+    --- PASS: TestApiCase6/error (0.00s)
+=== RUN   TestApiCase7
+--- PASS: TestApiCase7 (0.02s)
+=== RUN   TestApiCase8
+--- PASS: TestApiCase8 (0.03s)
+PASS
+ok  	example.com/app/api	0.477s
+=== RUN   TestAuthCase1
+--- PASS: TestAuthCase1 (0.01s)
+=== RUN   TestAuthCase2
+--- PASS: TestAuthCase2 (0.02s)
+=== RUN   TestAuthCase3
+--- PASS: TestAuthCase3 (0.03s)
+=== RUN   TestAuthCase3/error
+    --- PASS: TestAuthCase3/error (0.00s)
+=== RUN   TestAuthCase4
+--- PASS: TestAuthCase4 (0.04s)
+=== RUN   TestAuthCase5
+--- PASS: TestAuthCase5 (0.00s)
+=== RUN   TestAuthCase6
+--- PASS: TestAuthCase6 (0.01s)
+=== RUN   TestAuthCase6/error
+    --- PASS: TestAuthCase6/error (0.00s)
+=== RUN   TestAuthCase7
+--- PASS: TestAuthCase7 (0.02s)
+=== RUN   TestAuthCase8
+--- PASS: TestAuthCase8 (0.03s)
+PASS
+ok  	example.com/app/auth	0.600s
+=== RUN   TestBillingCase1
+--- PASS: TestBillingCase1 (0.01s)
+=== RUN   TestBillingCase2
+--- PASS: TestBillingCase2 (0.02s)
+=== RUN   TestBillingCase3
+--- PASS: TestBillingCase3 (0.03s)
+=== RUN   TestBillingCase3/error
+    --- PASS: TestBillingCase3/error (0.00s)
+=== RUN   TestBillingCase4
+--- PASS: TestBillingCase4 (0.04s)
+=== RUN   TestBillingCase5
+--- PASS: TestBillingCase5 (0.00s)
+=== RUN   TestBillingCase6
+--- PASS: TestBillingCase6 (0.01s)
+=== RUN   TestBillingCase6/error
+    --- PASS: TestBillingCase6/error (0.00s)
+=== RUN   TestBillingCase7
+--- PASS: TestBillingCase7 (0.02s)
+=== RUN   TestBillingCase8
+--- PASS: TestBillingCase8 (0.03s)
+PASS
+ok  	example.com/app/billing	0.465s
+=== RUN   TestCacheCase1
+--- PASS: TestCacheCase1 (0.01s)
+=== RUN   TestCacheCase2
+--- PASS: TestCacheCase2 (0.02s)
+=== RUN   TestCacheCase3
+--- PASS: TestCacheCase3 (0.03s)
+=== RUN   TestCacheCase3/error
+    --- PASS: TestCacheCase3/error (0.00s)
+=== RUN   TestCacheCase4
+--- PASS: TestCacheCase4 (0.04s)
+=== RUN   TestCacheCase5
+--- PASS: TestCacheCase5 (0.00s)
+=== RUN   TestCacheCase6
+--- PASS: TestCacheCase6 (0.01s)
+=== RUN   TestCacheCase6/error
+    --- PASS: TestCacheCase6/error (0.00s)
+=== RUN   TestCacheCase7
+--- PASS: TestCacheCase7 (0.02s)
+=== RUN   TestCacheCase8
+--- PASS: TestCacheCase8 (0.03s)
+PASS
+ok  	example.com/app/cache	0.371s
+=== RUN   TestCliCase1
+--- PASS: TestCliCase1 (0.01s)
+=== RUN   TestCliCase2
+--- PASS: TestCliCase2 (0.02s)
+=== RUN   TestCliCase3
+--- PASS: TestCliCase3 (0.03s)
+=== RUN   TestCliCase3/error
+    --- PASS: TestCliCase3/error (0.00s)
+=== RUN   TestCliCase4
+--- PASS: TestCliCase4 (0.04s)
+=== RUN   TestCliCase5
+--- PASS: TestCliCase5 (0.00s)
+=== RUN   TestCliCase6
+--- PASS: TestCliCase6 (0.01s)
+=== RUN   TestCliCase6/error
+    --- PASS: TestCliCase6/error (0.00s)
+=== RUN   TestCliCase7
+--- PASS: TestCliCase7 (0.02s)
+=== RUN   TestCliCase8
+--- PASS: TestCliCase8 (0.03s)
+PASS
+ok  	example.com/app/cli	0.307s
+=== RUN   TestConfigCase1
+--- PASS: TestConfigCase1 (0.01s)
+=== RUN   TestConfigCase2
+--- PASS: TestConfigCase2 (0.02s)
+=== RUN   TestConfigCase3
+--- PASS: TestConfigCase3 (0.03s)
+=== RUN   TestConfigCase3/error
+    --- PASS: TestConfigCase3/error (0.00s)
+=== RUN   TestConfigCase4
+--- PASS: TestConfigCase4 (0.04s)
+=== RUN   TestConfigCase5
+--- PASS: TestConfigCase5 (0.00s)
+=== RUN   TestConfigCase6
+--- PASS: TestConfigCase6 (0.01s)
+=== RUN   TestConfigCase6/error
+    --- PASS: TestConfigCase6/error (0.00s)
+=== RUN   TestConfigCase7
+--- PASS: TestConfigCase7 (0.02s)
+=== RUN   TestConfigCase8
+--- PASS: TestConfigCase8 (0.03s)
+PASS
+ok  	example.com/app/config	0.255s
+=== RUN   TestCryptoCase1
+--- PASS: TestCryptoCase1 (0.01s)
+=== RUN   TestCryptoCase2
+--- PASS: TestCryptoCase2 (0.02s)
+=== RUN   TestCryptoCase3
+--- PASS: TestCryptoCase3 (0.03s)
+=== RUN   TestCryptoCase3/error
+    --- PASS: TestCryptoCase3/error (0.00s)
+=== RUN   TestCryptoCase4
+--- PASS: TestCryptoCase4 (0.04s)
+=== RUN   TestCryptoCase5
+--- PASS: TestCryptoCase5 (0.00s)
+=== RUN   TestCryptoCase6
+--- PASS: TestCryptoCase6 (0.01s)
+=== RUN   TestCryptoCase6/error
+    --- PASS: TestCryptoCase6/error (0.00s)
+=== RUN   TestCryptoCase7
+--- PASS: TestCryptoCase7 (0.02s)
+=== RUN   TestCryptoCase8
+--- PASS: TestCryptoCase8 (0.03s)
+PASS
+ok  	example.com/app/crypto	0.814s
+=== RUN   TestDbCase1
+--- PASS: TestDbCase1 (0.01s)
+=== RUN   TestDbCase2
+--- PASS: TestDbCase2 (0.02s)
+=== RUN   TestDbCase3
+--- PASS: TestDbCase3 (0.03s)
+=== RUN   TestDbCase3/error
+    --- PASS: TestDbCase3/error (0.00s)
+=== RUN   TestDbCase4
+--- PASS: TestDbCase4 (0.04s)
+=== RUN   TestDbCase5
+--- PASS: TestDbCase5 (0.00s)
+=== RUN   TestDbCase6
+--- PASS: TestDbCase6 (0.01s)
+=== RUN   TestDbCase6/error
+    --- PASS: TestDbCase6/error (0.00s)
+=== RUN   TestDbCase7
+--- PASS: TestDbCase7 (0.02s)
+=== RUN   TestDbCase8
+--- PASS: TestDbCase8 (0.03s)
+PASS
+ok  	example.com/app/db	0.185s
+=== RUN   TestEventsCase1
+--- PASS: TestEventsCase1 (0.01s)
+=== RUN   TestEventsCase2
+--- PASS: TestEventsCase2 (0.02s)
+=== RUN   TestEventsCase3
+--- PASS: TestEventsCase3 (0.03s)
+=== RUN   TestEventsCase3/error
+    --- PASS: TestEventsCase3/error (0.00s)
+=== RUN   TestEventsCase4
+--- PASS: TestEventsCase4 (0.04s)
+=== RUN   TestEventsCase5
+--- PASS: TestEventsCase5 (0.00s)
+=== RUN   TestEventsCase6
+--- PASS: TestEventsCase6 (0.01s)
+=== RUN   TestEventsCase6/error
+    --- PASS: TestEventsCase6/error (0.00s)
+=== RUN   TestEventsCase7
+--- PASS: TestEventsCase7 (0.02s)
+=== RUN   TestEventsCase8
+--- PASS: TestEventsCase8 (0.03s)
+PASS
+ok  	example.com/app/events	0.716s
+=== RUN   TestExportCase1
+--- PASS: TestExportCase1 (0.01s)
+=== RUN   TestExportCase2
+--- PASS: TestExportCase2 (0.02s)
+=== RUN   TestExportCase3
+--- PASS: TestExportCase3 (0.03s)
+=== RUN   TestExportCase3/error
+    --- PASS: TestExportCase3/error (0.00s)
+=== RUN   TestExportCase4
+--- PASS: TestExportCase4 (0.04s)
+=== RUN   TestExportCase5
+--- PASS: TestExportCase5 (0.00s)
+=== RUN   TestExportCase6
+--- PASS: TestExportCase6 (0.01s)
+=== RUN   TestExportCase6/error
+    --- PASS: TestExportCase6/error (0.00s)
+=== RUN   TestExportCase7
+--- PASS: TestExportCase7 (0.02s)
+=== RUN   TestExportCase8
+--- PASS: TestExportCase8 (0.03s)
+PASS
+ok  	example.com/app/export	0.799s
+=== RUN   TestFeedCase1
+--- PASS: TestFeedCase1 (0.01s)
+=== RUN   TestFeedCase2
+--- PASS: TestFeedCase2 (0.02s)
+=== RUN   TestFeedCase3
+--- PASS: TestFeedCase3 (0.03s)
+=== RUN   TestFeedCase3/error
+    --- PASS: TestFeedCase3/error (0.00s)
+=== RUN   TestFeedCase4
+--- PASS: TestFeedCase4 (0.04s)
+=== RUN   TestFeedCase5
+--- PASS: TestFeedCase5 (0.00s)
+=== RUN   TestFeedCase6
+--- PASS: TestFeedCase6 (0.01s)
+=== RUN   TestFeedCase6/error
+    --- PASS: TestFeedCase6/error (0.00s)
+=== RUN   TestFeedCase7
+--- PASS: TestFeedCase7 (0.02s)
+=== RUN   TestFeedCase8
+--- PASS: TestFeedCase8 (0.03s)
+PASS
+ok  	example.com/app/feed	0.250s
+=== RUN   TestGatewayCase1
+--- PASS: TestGatewayCase1 (0.01s)
+=== RUN   TestGatewayCase2
+--- PASS: TestGatewayCase2 (0.02s)
+=== RUN   TestGatewayCase3
+--- PASS: TestGatewayCase3 (0.03s)
+=== RUN   TestGatewayCase3/error
+    --- PASS: TestGatewayCase3/error (0.00s)
+=== RUN   TestGatewayCase4
+--- PASS: TestGatewayCase4 (0.04s)
+=== RUN   TestGatewayCase5
+--- PASS: TestGatewayCase5 (0.00s)
+=== RUN   TestGatewayCase6
+--- PASS: TestGatewayCase6 (0.01s)
+=== RUN   TestGatewayCase6/error
+    --- PASS: TestGatewayCase6/error (0.00s)
+=== RUN   TestGatewayCase7
+--- PASS: TestGatewayCase7 (0.02s)
+=== RUN   TestGatewayCase8
+--- PASS: TestGatewayCase8 (0.03s)
+PASS
+ok  	example.com/app/gateway	0.084s

@@ -1,0 +1,7 @@
+hook-redactor src/redactor.rs: scan_finds_two_matches_same_line
+-- input --
+key1=gh{{}}p_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa key2=gh{{}}p_bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+-- must_not_contain --
+gh{{}}p_
+-- want --
+key1=<redacted:api_key> key2=<redacted:api_key>

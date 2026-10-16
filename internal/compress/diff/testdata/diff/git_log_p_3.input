@@ -1,0 +1,435 @@
+commit a1b2c3d4e5f60718293a4b5c6d7e8f9012345678
+Author: Dev Example <dev@example.com>
+Date:   Tue 29 Sep 2026 10:00:00 +0200
+
+    fix(svc): reject empty id early
+
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // fix
++	// fix: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+commit b2c3d4e5f60718293a4b5c6d7e8f90123456789a
+Author: Dev Example <dev@example.com>
+Date:   Mon 28 Sep 2026 11:00:00 +0200
+
+    chore(deps): update web dependencies
+
+diff --git a/web/package.json b/web/package.json
+index 1a2b3c4..5d6e7f8 100644
+--- a/web/package.json
++++ b/web/package.json
+@@ -2,7 +2,8 @@
+   "name": "web",
+   "version": "1.2.0",
+   "dependencies": {
+-    "svelte": "^5.1.0",
++    "svelte": "^5.2.0",
++    "tinro": "^0.6.12",
+     "vite": "^6.0.0"
+   }
+ }
+diff --git a/web/pnpm-lock.yaml b/web/pnpm-lock.yaml
+index a1b2c3d..e4f5a6b 100644
+--- a/web/pnpm-lock.yaml
++++ b/web/pnpm-lock.yaml
+@@ -2,163 +2,163 @@
+ 
+ packages:
+ 
+-  pkg-000@4.18.17:
+-    resolution: {integrity: sha512-4bf20f876ffc474c0251908fcdce4b314f68d9dc}
++  pkg-000@4.9.3:
++    resolution: {integrity: sha512-cf4220c917b853860886599b2ac757f8290996dd}
+     engines: {node: '>=18'}
+ 
+-  pkg-001@6.17.18:
+-    resolution: {integrity: sha512-d7a085a368932ff2b2d409dd311ca871902316d9}
++  pkg-001@5.13.14:
++    resolution: {integrity: sha512-5798121e8fa462d6e85bda6a317873a59e01b29a}
+     engines: {node: '>=18'}
+ 
+-  pkg-002@5.4.22:
+-    resolution: {integrity: sha512-1aab4ccec38d79d89a0da0c41aebb8f010b8e9a5}
++  pkg-002@1.10.9:
++    resolution: {integrity: sha512-a4d296e948c5a0b1e5bb93e6d63111541f7a139d}
+     engines: {node: '>=18'}
+ 
+-  pkg-003@6.5.10:
+-    resolution: {integrity: sha512-b89c3049787a5d33aa7e52a6e87316a58a2b4d98}
++  pkg-003@4.15.6:
++    resolution: {integrity: sha512-7edf17de7d6f61188767d84a1a3c1fc2d65a9fad}
+     engines: {node: '>=18'}
+ 
+-  pkg-004@8.11.20:
+-    resolution: {integrity: sha512-d9dd1d460fd71e9a72937116d10f35970d13a48f}
++  pkg-004@9.6.20:
++    resolution: {integrity: sha512-8acf2861c4815efcc6065083cc7165afe0213f84}
+     engines: {node: '>=18'}
+ 
+-  pkg-005@1.11.7:
+-    resolution: {integrity: sha512-63357840fc1878d1fa0141312f12fa5a2bcc9b86}
++  pkg-005@1.11.2:
++    resolution: {integrity: sha512-09b22ec69c7fc323bdde269fd35b554afa805093}
+     engines: {node: '>=18'}
+ 
+-  pkg-006@6.13.3:
+-    resolution: {integrity: sha512-40c251bec1d1bfadde07682d7d40ab83e3c3a30f}
++  pkg-006@9.3.15:
++    resolution: {integrity: sha512-f27d9b7501ae9eec48ba4d2459b6b22c5aba5900}
+     engines: {node: '>=18'}
+ 
+-  pkg-007@3.7.24:
+-    resolution: {integrity: sha512-c123c50a303f99217331a52757ec8bcbd2c7d5df}
++  pkg-007@9.2.25:
++    resolution: {integrity: sha512-b355f235f79c7f79b7aecca9ed085ebcc042eb92}
+     engines: {node: '>=18'}
+ 
+-  pkg-008@3.20.12:
+-    resolution: {integrity: sha512-453ffe54864a79d86908fc65b7af4df6e0f2c1e7}
++  pkg-008@5.15.7:
++    resolution: {integrity: sha512-f24729415c8075361a2381954d42b04d469f2c55}
+     engines: {node: '>=18'}
+ 
+-  pkg-009@4.20.22:
+-    resolution: {integrity: sha512-268768451851a5d2232891bea00aadcf26fc4a38}
++  pkg-009@5.16.12:
++    resolution: {integrity: sha512-9ca5c1d080942530770f5eca563fb9d1689fa27a}
+     engines: {node: '>=18'}
+ 
+-  pkg-010@2.13.3:
+-    resolution: {integrity: sha512-e83bbe983a3fb19545be334ad95ef95235cb388c}
++  pkg-010@2.1.19:
++    resolution: {integrity: sha512-afb251f7162a4930278010f46b7b9cc15df2996d}
+     engines: {node: '>=18'}
+ 
+-  pkg-011@1.4.1:
+-    resolution: {integrity: sha512-f87bace2bf34833356dc44c65568b90edca9f9f0}
++  pkg-011@6.5.6:
++    resolution: {integrity: sha512-0fd8adda68820c894a252686f3a0e652733a9425}
+     engines: {node: '>=18'}
+ 
+-  pkg-012@4.20.0:
+-    resolution: {integrity: sha512-37f5e6661e3944e210b72f0aaab4212a626d7fa3}
++  pkg-012@1.5.21:
++    resolution: {integrity: sha512-681aab55611518f364cffabdc1154b797b6bcb37}
+     engines: {node: '>=18'}
+ 
+-  pkg-013@1.13.2:
+-    resolution: {integrity: sha512-65cff2d6f90eece5e18bbebc7068b4e65605c504}
++  pkg-013@4.11.5:
++    resolution: {integrity: sha512-600369af19c54cebb0e4e0d63a912f5157a00cd7}
+     engines: {node: '>=18'}
+ 
+-  pkg-014@2.19.5:
+-    resolution: {integrity: sha512-ef510cead117c1cf0773cf65a3b3198e9f780aba}
++  pkg-014@3.19.1:
++    resolution: {integrity: sha512-4597dab5bb8a14b6ff3265441b2145819f86f914}
+     engines: {node: '>=18'}
+ 
+-  pkg-015@2.1.21:
+-    resolution: {integrity: sha512-d20302051f16a6fafb1c9c295d3cac5cb5bde7ef}
++  pkg-015@5.13.1:
++    resolution: {integrity: sha512-0bb26d2d19665622009d22a561124d43aa843205}
+     engines: {node: '>=18'}
+ 
+-  pkg-016@6.8.26:
+-    resolution: {integrity: sha512-5cf1450e23a711eeab026c3a93e267144037967d}
++  pkg-016@1.8.17:
++    resolution: {integrity: sha512-d9b4be7e5f068ea595a9a6f98b5a37a65e391010}
+     engines: {node: '>=18'}
+ 
+-  pkg-017@9.19.10:
+-    resolution: {integrity: sha512-6e5213036823ec73fbce39ec630e92ab6f2bd267}
++  pkg-017@9.5.7:
++    resolution: {integrity: sha512-7bcc7ed92a1351d0c5d17bab40bb3c6fbd2c52ec}
+     engines: {node: '>=18'}
+ 
+-  pkg-018@6.1.10:
+-    resolution: {integrity: sha512-7de286a566edb6dfdf190530491f1668fd1be694}
++  pkg-018@9.6.24:
++    resolution: {integrity: sha512-029344eebdac9c3ac2fdb75d93a175f7bded3f0d}
+     engines: {node: '>=18'}
+ 
+-  pkg-019@2.14.9:
+-    resolution: {integrity: sha512-de264f9cb5d9ef7b990ebb97004405106ebb1f57}
++  pkg-019@6.15.28:
++    resolution: {integrity: sha512-864ab48f4fcfb1d8550e94107a4aae78121e377f}
+     engines: {node: '>=18'}
+ 
+-  pkg-020@1.8.13:
+-    resolution: {integrity: sha512-a13e987fd8a10d1574da480510f1eedb595243db}
++  pkg-020@9.2.17:
++    resolution: {integrity: sha512-55606670fab8c4a38831a1c2671fcb224edc3541}
+     engines: {node: '>=18'}
+ 
+-  pkg-021@8.14.8:
+-    resolution: {integrity: sha512-8e94a41df7e80a3f4883d2b1fe69b5cca1861aac}
++  pkg-021@3.20.14:
++    resolution: {integrity: sha512-febd78808ca93565c45622902e30886638c8803c}
+     engines: {node: '>=18'}
+ 
+-  pkg-022@9.9.1:
+-    resolution: {integrity: sha512-4d8d2f76233092d8fe89157f5445ec04c1559644}
++  pkg-022@6.19.25:
++    resolution: {integrity: sha512-5fa6f755a166ea45bdeba2ef88438efe28b3905c}
+     engines: {node: '>=18'}
+ 
+-  pkg-023@1.16.30:
+-    resolution: {integrity: sha512-46c3dc508343494cb260b4f72bf3af0bede9e4ec}
++  pkg-023@9.5.21:
++    resolution: {integrity: sha512-cf51a77c56fe9c8ad61161fa814b1cdb7bebc0c4}
+     engines: {node: '>=18'}
+ 
+-  pkg-024@4.19.9:
+-    resolution: {integrity: sha512-595a86411d53053cb82eea46aebabba998537a79}
++  pkg-024@3.15.13:
++    resolution: {integrity: sha512-85ebb354942f1860dd8f5034d8e2a8e50a888ca1}
+     engines: {node: '>=18'}
+ 
+-  pkg-025@7.8.14:
+-    resolution: {integrity: sha512-4fa5e12dd917cc62b61f3dcb09bbceb3f4a70b20}
++  pkg-025@3.13.27:
++    resolution: {integrity: sha512-83733f8d3cdee5f59b82e69c8ea1aebb477b28de}
+     engines: {node: '>=18'}
+ 
+-  pkg-026@3.2.6:
+-    resolution: {integrity: sha512-ad9600aeb6ea3c7f4996352d0bc0f5f84c6d9d93}
++  pkg-026@5.20.13:
++    resolution: {integrity: sha512-5c7c9a48e66f3f52804acab421eb5bb2b3eef54a}
+     engines: {node: '>=18'}
+ 
+-  pkg-027@2.2.14:
+-    resolution: {integrity: sha512-a20afd3ad7a6c2107257fc9be769a4bba6e1d96f}
++  pkg-027@7.4.26:
++    resolution: {integrity: sha512-9e557e6d40957a47ad31b95e39652a204425851a}
+     engines: {node: '>=18'}
+ 
+-  pkg-028@4.5.26:
+-    resolution: {integrity: sha512-3e3c6a51af7c17cbc7598b81a3679e557f66b75c}
++  pkg-028@6.20.8:
++    resolution: {integrity: sha512-ef43a98910e80b281e2fdeffa165c9bf184d6db3}
+     engines: {node: '>=18'}
+ 
+-  pkg-029@9.13.19:
+-    resolution: {integrity: sha512-59eb12ef058df7cfbcf53da4a3b49f4ebf1b6299}
++  pkg-029@4.13.8:
++    resolution: {integrity: sha512-7e3532f4c37755528486922dce9c62ceef89b686}
+     engines: {node: '>=18'}
+ 
+-  pkg-030@9.10.13:
+-    resolution: {integrity: sha512-90dbdfb5796c3a5af5ce6db31f655333cac82f8a}
++  pkg-030@8.7.23:
++    resolution: {integrity: sha512-6fad4bf787f0471bec097426d6553f94146bc80a}
+     engines: {node: '>=18'}
+ 
+-  pkg-031@4.8.3:
+-    resolution: {integrity: sha512-63fbd48b586778ba33427ea3a451f84beddd898c}
++  pkg-031@7.6.28:
++    resolution: {integrity: sha512-c94d5933738cc865a2809eeb7c9dfa2dc040fba4}
+     engines: {node: '>=18'}
+ 
+-  pkg-032@3.1.1:
+-    resolution: {integrity: sha512-5d0646b81b63562fd943a584224302cee85029d5}
++  pkg-032@7.7.9:
++    resolution: {integrity: sha512-bf67c24b678348df530333d2469d34b5e0f9d7f5}
+     engines: {node: '>=18'}
+ 
+-  pkg-033@1.1.10:
+-    resolution: {integrity: sha512-ab316c0ea7ee70b675dc3ca37930c0a76e8c6d92}
++  pkg-033@7.20.28:
++    resolution: {integrity: sha512-f0788f5312a75d4fed93a4fe4563c7c8831be01a}
+     engines: {node: '>=18'}
+ 
+-  pkg-034@3.14.16:
+-    resolution: {integrity: sha512-394e4957b932f2f7d000f01f01b99ff99492c136}
++  pkg-034@8.15.28:
++    resolution: {integrity: sha512-d55d4b89fdcd5536e4bb1e0bd6c940c443a91f19}
+     engines: {node: '>=18'}
+ 
+-  pkg-035@4.2.5:
+-    resolution: {integrity: sha512-c45290f2bf2dacdea0a9f8f86b38fdf6a171c7c5}
++  pkg-035@8.16.9:
++    resolution: {integrity: sha512-de63057a64f29896167117a715a45ca91fe85f8b}
+     engines: {node: '>=18'}
+ 
+-  pkg-036@6.3.20:
+-    resolution: {integrity: sha512-5e8ddacd1bcbc874760d3cffcd6fc150634c3336}
++  pkg-036@1.6.26:
++    resolution: {integrity: sha512-75a270214e9b54f1d6a8a14c305a66261f0ac8df}
+     engines: {node: '>=18'}
+ 
+-  pkg-037@5.17.27:
+-    resolution: {integrity: sha512-4dd456dfae080aac639626c77a72a966c0974828}
++  pkg-037@1.13.12:
++    resolution: {integrity: sha512-19644cf2dee4d7682b2e543bba5988890267d748}
+     engines: {node: '>=18'}
+ 
+-  pkg-038@6.6.9:
+-    resolution: {integrity: sha512-4b663ed81c896e69b23dcb783305ab57a13a2da9}
++  pkg-038@3.13.5:
++    resolution: {integrity: sha512-294543c16260ca48b3814a2f182f8d557bfcf37d}
+     engines: {node: '>=18'}
+ 
+-  pkg-039@1.15.14:
+-    resolution: {integrity: sha512-e5f035bf8c6ecfbb0affe0f29573558a2b07a01c}
++  pkg-039@7.12.1:
++    resolution: {integrity: sha512-5dffb545f4802449f94ea5b1e56aa547a02ba07a}
+     engines: {node: '>=18'}
+ 
+commit c3d4e5f60718293a4b5c6d7e8f90123456789ab0
+Author: Dev Example <dev@example.com>
+Date:   Fri 25 Sep 2026 12:00:00 +0200
+
+    refactor(svc): split load and save
+
+diff --git a/internal/svc/save.go b/internal/svc/save.go
+new file mode 100644
+index 0000000..5d6e7f8
+--- /dev/null
++++ b/internal/svc/save.go
+@@ -0,0 +1,67 @@
++package svc
++
++import (
++	"context"
++	"fmt"
++)
++
++func Save0(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save1(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save2(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save3(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -80,63 +80,3 @@
+ 	return out, nil
+ }
+ 
+-func Save0(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save1(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save2(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save3(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-

@@ -1,0 +1,16 @@
+# Seite des Changes issue-72-cpa-upstream-pin.
+art: seite
+change: issue-72-cpa-upstream-pin
+kopf: issue-72/cpa-upstream-pin
+titel: CLIProxyAPI liegt nicht mehr als Kopie im Repo, der Build holt es gepinnt
+vorher: ist.prozess.yaml
+nachher: prozess.yaml
+fuer_sie:
+  - Das Repo ist um 1.785 fremde Dateien kleiner und kann ohne fremden Code public werden.
+  - Ein CPA-Update ist eine Zeile im Dockerfile plus Doku, beschrieben in deploy/cliproxyapi/UPSTREAM.md.
+  - make cpa baut das Binary für den Smoke-Test aus demselben Pin, CI prüft das bei jedem PR.
+  - Zum Lesen neuer Versionen dient der lokale Klon ref/cliproxyapi, der nie committet wird.
+loesung: >-
+  Das Dockerfile baut CLIProxyAPI per go install am Commit aus ARG CPA_VERSION, der einzigen
+  Stelle des Pins. make cpa liest denselben Pin für den Smoke-Test, CI prüft ihn. Die Kopie
+  unter third_party ist gelöscht; Herkunft und Lizenz stehen in UPSTREAM.md und NOTICE.md.

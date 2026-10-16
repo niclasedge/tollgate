@@ -1,0 +1,20 @@
+# TypeScript types for the frontend, generated from the Go API structs
+# (`make generate`). Never edit the output by hand.
+packages:
+  - path: github.com/niclasedge/tollgate/internal/compress
+    include_files: ["types.go"]
+    output_path: web/src/lib/types/compress.ts
+  - path: github.com/niclasedge/tollgate/internal/auth
+    include_files: ["types.go"]
+    output_path: web/src/lib/types/auth.ts
+  - path: github.com/niclasedge/tollgate/internal/dashboard
+    include_files: ["types.go"]
+    output_path: web/src/lib/types/dashboard.ts
+  - path: github.com/niclasedge/tollgate/internal/accounts
+    include_files: ["types.go"]
+    output_path: web/src/lib/types/accounts.ts
+  - path: github.com/niclasedge/tollgate/internal/redactcfg
+    include_files: ["types.go", "api.go", "dryrun.go", "parse.go", "model.go"]
+    output_path: web/src/lib/types/redactcfg.ts
+    type_mappings:
+      time.Time: string

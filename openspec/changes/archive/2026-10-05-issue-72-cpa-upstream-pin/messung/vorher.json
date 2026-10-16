@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "stufe": "vorher",
+  "befehl": "sh -c 'echo go-dateien-unter-third_party: $(find third_party -name \"*.go\" | wc -l); echo cpa-go.mod-im-repo: $(find third_party -name go.mod | wc -l); echo cpa-src-in-compose: $(grep -c cpa-src docker-compose.yml)'",
+  "stand": "main",
+  "commit": "bd8402cda51275b50ca6e62f09b62088845039e9",
+  "umfang": "Basisarchiv",
+  "arbeitsstand": "bd8402c (nichts Uncommittetes)",
+  "exit": 0,
+  "laufzeit_ms": 36,
+  "ausgabe": "go-dateien-unter-third_party: 1603\ncpa-go.mod-im-repo: 24\ncpa-src-in-compose: 1\n"
+}

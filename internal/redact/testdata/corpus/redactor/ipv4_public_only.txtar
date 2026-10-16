@@ -1,0 +1,10 @@
+hook-redactor src/redactor.rs: ipv4_redacts_public_only
+-- input --
+client=8.8.8.8 internal=192.168.1.1 lo=127.0.0.1 ten=10.0.0.5
+-- must_contain --
+<redacted:ip>
+192.168.1.1
+127.0.0.1
+10.0.0.5
+-- must_not_contain --
+8.8.8.8

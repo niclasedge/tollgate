@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/niclasedge/tollgate/config/schema/tollgate-config.v1.schema.json",
+  "title": "tollgate Laufzeitkonfiguration v1",
+  "description": "Versionierte Konfiguration für Redact und Compress (ADR-0008).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version"],
+  "properties": {
+    "version": {
+      "description": "Schema-Version, nicht die DB-Version.",
+      "const": 1
+    },
+    "builtin": {
+      "description": "Eingebaute Filter (ADR-0005). Fehlende Schalter gelten mit ihrem Standardwert.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "email": { "type": "boolean", "default": true },
+        "api_keys": { "type": "boolean", "default": true },
+        "jwt": { "type": "boolean", "default": true },
+        "connection_urls": { "type": "boolean", "default": true },
+        "ip_addresses": { "type": "boolean", "default": false },
+        "private_keys": { "type": "boolean", "default": true }
+      }
+    },
+    "custom": {
+      "description": "Eigene Regex-Filter. Jedes Beispiel muss treffen.",
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "pattern", "placeholder", "examples"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+          "pattern": { "type": "string", "minLength": 1, "maxLength": 1000, "description": "RE2-Syntax" },
+          "placeholder": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,31}$",
+            "not": { "enum": ["email", "api_key", "jwt", "connection_password", "ip", "private_key", "word"] },
+            "description": "Platzhalter-Typ laut ADR-0006, nicht gleich einem eingebauten Typ."
+          },
+          "examples": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 20,
+            "items": { "type": "string", "minLength": 1, "maxLength": 1000 }
+          }
+        }
+      }
+    },
+    "words": {
+      "description": "Vertrauliche Wortlisten, verschlüsselt gespeichert. Alle vier Listen teilen case_sensitive und whole_word.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "case_sensitive": { "type": "boolean", "default": false },
+        "whole_word": { "type": "boolean", "default": true },
+        "list": {
+          "description": "Allgemeine Wortliste, Platzhalter-Typ word.",
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+        },
+        "customers": {
+          "description": "Kunden, Platzhalter-Typ kunde.",
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+        },
+        "first_names": {
+          "description": "Vornamen, Platzhalter-Typ vorname.",
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+        },
+        "last_names": {
+          "description": "Nachnamen, Platzhalter-Typ nachname.",
+          "type": "array",
+          "maxItems": 5000,
+          "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+        }
+      }
+    },
+    "allowlist": {
+      "description": "Werte, die nie ersetzt werden (exakter Vergleich).",
+      "type": "array",
+      "maxItems": 1000,
+      "items": { "type": "string", "minLength": 1, "maxLength": 1000 }
+    },
+    "compress": {
+      "description": "Kompression von Bash-Ausgaben (ADR-0007). Konfigurierte Regeln gelten vor den eingebauten.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_bytes": { "type": "integer", "minimum": 0 },
+        "rules": {
+          "type": "array",
+          "maxItems": 200,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "match", "strategy"],
+            "properties": {
+              "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$" },
+              "match": {
+                "type": "array",
+                "minItems": 1,
+                "items": { "type": "string", "minLength": 1, "maxLength": 200 }
+              },
+              "strategy": { "enum": ["test_log", "build_log", "diff", "search", "passthrough"] },
+              "max_errors": { "type": "integer", "minimum": 0 },
+              "context_lines": { "type": "integer", "minimum": 0 },
+              "max_files": { "type": "integer", "minimum": 0 },
+              "max_hunks": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

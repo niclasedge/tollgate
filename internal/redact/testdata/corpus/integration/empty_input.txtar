@@ -1,0 +1,3 @@
+hook-redactor tests/integration.rs: empty_input_succeeds
+-- input --
+-- want --

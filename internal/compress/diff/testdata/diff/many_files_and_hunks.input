@@ -1,0 +1,900 @@
+diff --git a/pkg/mod00/impl.go b/pkg/mod00/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod00/impl.go
++++ b/pkg/mod00/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m0
++	// m0: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod01/impl.go b/pkg/mod01/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod01/impl.go
++++ b/pkg/mod01/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m1
++	// m1: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m1: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod02/impl.go b/pkg/mod02/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod02/impl.go
++++ b/pkg/mod02/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m2
++	// m2: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod03/impl.go b/pkg/mod03/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod03/impl.go
++++ b/pkg/mod03/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m3
++	// m3: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m3: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod04/impl.go b/pkg/mod04/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod04/impl.go
++++ b/pkg/mod04/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m4
++	// m4: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod05/impl.go b/pkg/mod05/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod05/impl.go
++++ b/pkg/mod05/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m5
++	// m5: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m5: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod06/impl.go b/pkg/mod06/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod06/impl.go
++++ b/pkg/mod06/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m6
++	// m6: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod07/impl.go b/pkg/mod07/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod07/impl.go
++++ b/pkg/mod07/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m7
++	// m7: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m7: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod08/impl.go b/pkg/mod08/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod08/impl.go
++++ b/pkg/mod08/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m8
++	// m8: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod09/impl.go b/pkg/mod09/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod09/impl.go
++++ b/pkg/mod09/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m9
++	// m9: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m9: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod10/impl.go b/pkg/mod10/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod10/impl.go
++++ b/pkg/mod10/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m10
++	// m10: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod11/impl.go b/pkg/mod11/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod11/impl.go
++++ b/pkg/mod11/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m11
++	// m11: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m11: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod12/impl.go b/pkg/mod12/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod12/impl.go
++++ b/pkg/mod12/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m12
++	// m12: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod13/impl.go b/pkg/mod13/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod13/impl.go
++++ b/pkg/mod13/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m13
++	// m13: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m13: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod14/impl.go b/pkg/mod14/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod14/impl.go
++++ b/pkg/mod14/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m14
++	// m14: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod15/impl.go b/pkg/mod15/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod15/impl.go
++++ b/pkg/mod15/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m15
++	// m15: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m15: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod16/impl.go b/pkg/mod16/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod16/impl.go
++++ b/pkg/mod16/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m16
++	// m16: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod17/impl.go b/pkg/mod17/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod17/impl.go
++++ b/pkg/mod17/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m17
++	// m17: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m17: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod18/impl.go b/pkg/mod18/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod18/impl.go
++++ b/pkg/mod18/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m18
++	// m18: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod19/impl.go b/pkg/mod19/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod19/impl.go
++++ b/pkg/mod19/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m19
++	// m19: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m19: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod20/impl.go b/pkg/mod20/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod20/impl.go
++++ b/pkg/mod20/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m20
++	// m20: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod21/impl.go b/pkg/mod21/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod21/impl.go
++++ b/pkg/mod21/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m21
++	// m21: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m21: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod22/impl.go b/pkg/mod22/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod22/impl.go
++++ b/pkg/mod22/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m22
++	// m22: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod23/impl.go b/pkg/mod23/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod23/impl.go
++++ b/pkg/mod23/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m23
++	// m23: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m23: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod24/impl.go b/pkg/mod24/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod24/impl.go
++++ b/pkg/mod24/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m24
++	// m24: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod25/impl.go b/pkg/mod25/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod25/impl.go
++++ b/pkg/mod25/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m25
++	// m25: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m25: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod26/impl.go b/pkg/mod26/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod26/impl.go
++++ b/pkg/mod26/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m26
++	// m26: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod27/impl.go b/pkg/mod27/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod27/impl.go
++++ b/pkg/mod27/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m27
++	// m27: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m27: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod28/impl.go b/pkg/mod28/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod28/impl.go
++++ b/pkg/mod28/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m28
++	// m28: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod29/impl.go b/pkg/mod29/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod29/impl.go
++++ b/pkg/mod29/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m29
++	// m29: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m29: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod30/impl.go b/pkg/mod30/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod30/impl.go
++++ b/pkg/mod30/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m30
++	// m30: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod31/impl.go b/pkg/mod31/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod31/impl.go
++++ b/pkg/mod31/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m31
++	// m31: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m31: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/mod32/impl.go b/pkg/mod32/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod32/impl.go
++++ b/pkg/mod32/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m32
++	// m32: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+diff --git a/pkg/mod33/impl.go b/pkg/mod33/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/mod33/impl.go
++++ b/pkg/mod33/impl.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // m33
++	// m33: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+@@ -28,7 +29,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// m33: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+diff --git a/pkg/big/impl.go b/pkg/big/impl.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/pkg/big/impl.go
++++ b/pkg/big/impl.go
+@@ -8,7 +8,8 @@
+ func Big0(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -43,7 +44,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -78,7 +80,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big5(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -113,7 +116,8 @@
+ func Big7(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -148,7 +152,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -183,7 +188,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big12(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -218,7 +224,8 @@
+ func Big14(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -253,7 +260,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -288,7 +296,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big19(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -323,7 +332,8 @@
+ func Big21(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -358,7 +368,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -393,7 +404,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big26(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -428,7 +440,8 @@
+ func Big28(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -463,7 +476,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -498,7 +512,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big33(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -533,7 +548,8 @@
+ func Big35(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -568,7 +584,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -603,7 +620,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big40(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -638,7 +656,8 @@
+ func Big42(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -673,7 +692,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -708,7 +728,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big47(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -743,7 +764,8 @@
+ func Big49(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+@@ -778,7 +800,8 @@
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
++	out := Output{Name: res.Name, Total: len(res.Items)}
++	// big: handle edge case
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -813,7 +836,8 @@
+ 		out.Total += it.Size
+ 	}
+ 	return out, nil
+-}
++} // big
++	// big: handle edge case
+ 
+ func Big54(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+@@ -848,7 +872,8 @@
+ func Big56(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+-	}
++	} // big
++	// big: handle edge case
+ 	res, err := store.Load(ctx, in.ID)
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)

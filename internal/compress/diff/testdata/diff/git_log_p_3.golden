@@ -1,0 +1,193 @@
+commit a1b2c3d4e5f60718293a4b5c6d7e8f9012345678
+Author: Dev Example <dev@example.com>
+Date:   Tue 29 Sep 2026 10:00:00 +0200
+
+    fix(svc): reject empty id early
+
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -10,7 +10,8 @@
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // fix
++	// fix: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+commit b2c3d4e5f60718293a4b5c6d7e8f90123456789a
+Author: Dev Example <dev@example.com>
+Date:   Mon 28 Sep 2026 11:00:00 +0200
+
+    chore(deps): update web dependencies
+
+diff --git a/web/package.json b/web/package.json
+index 1a2b3c4..5d6e7f8 100644
+--- a/web/package.json
++++ b/web/package.json
+@@ -2,7 +2,8 @@
+   "name": "web",
+   "version": "1.2.0",
+   "dependencies": {
+-    "svelte": "^5.1.0",
++    "svelte": "^5.2.0",
++    "tinro": "^0.6.12",
+     "vite": "^6.0.0"
+   }
+ }
+diff --git a/web/pnpm-lock.yaml b/web/pnpm-lock.yaml
+index a1b2c3d..e4f5a6b 100644
+--- a/web/pnpm-lock.yaml
++++ b/web/pnpm-lock.yaml
+[tollgate: 1 Hunk ausgelassen (Lockfile, 244 Zeilen)]
+commit c3d4e5f60718293a4b5c6d7e8f90123456789ab0
+Author: Dev Example <dev@example.com>
+Date:   Fri 25 Sep 2026 12:00:00 +0200
+
+    refactor(svc): split load and save
+
+diff --git a/internal/svc/save.go b/internal/svc/save.go
+new file mode 100644
+index 0000000..5d6e7f8
+--- /dev/null
++++ b/internal/svc/save.go
+@@ -0,0 +1,67 @@
++package svc
++
++import (
++	"context"
++	"fmt"
++)
++
++func Save0(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save1(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save2(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Save3(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -80,63 +80,3 @@
+ 	return out, nil
+ }
+ 
+-func Save0(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save1(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save2(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Save3(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+[tollgate: diff · 244 Zeilen ausgelassen · Lockfiles: web/pnpm-lock.yaml]

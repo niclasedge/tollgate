@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: conn_string_https_passes
+-- input --
+see https://api.acme.com/postgres-guide
+-- must_contain --
+acme.com
+-- must_not_contain --
+<redacted

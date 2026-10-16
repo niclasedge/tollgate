@@ -1,0 +1,12 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_jwt_inside_authorization_header.
+Go keeps the specific JWT label and the scheme; Rust overwrites the whole header value with auth_header.
+-- input --
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4ifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+-- must_contain --
+<redacted:jwt>
+-- must_not_contain --
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+-- want --
+Authorization: Bearer <redacted:jwt>
+-- deviation --
+overlap

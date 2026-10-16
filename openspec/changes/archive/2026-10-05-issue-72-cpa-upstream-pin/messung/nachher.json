@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "stufe": "nachher",
+  "befehl": "sh -c 'echo go-dateien-unter-third_party: $(find third_party -name \"*.go\" | wc -l); echo cpa-go.mod-im-repo: $(find third_party -name go.mod | wc -l); echo cpa-src-in-compose: $(grep -c cpa-src docker-compose.yml)'",
+  "stand": "issue-72/cpa-upstream-pin",
+  "commit": "eb40de5f9c52d06582487509d17f9f4f9ee30298",
+  "umfang": "gemeinsamer Workspace",
+  "arbeitsstand": "eb40de5+8257a706bbcb",
+  "exit": 0,
+  "laufzeit_ms": 15,
+  "ausgabe": "go-dateien-unter-third_party: 0\ncpa-go.mod-im-repo: 0\ncpa-src-in-compose: 0\n"
+}

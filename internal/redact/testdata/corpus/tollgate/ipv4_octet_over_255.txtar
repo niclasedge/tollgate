@@ -1,0 +1,7 @@
+tollgate (ADR-0005): like Rust, an octet above 255 makes the IPv4 filter treat the match as malformed.
+-- input --
+addr 300.1.1.1 ok
+-- must_not_contain --
+<redacted
+-- want --
+addr 300.1.1.1 ok

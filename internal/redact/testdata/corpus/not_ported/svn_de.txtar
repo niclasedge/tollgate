@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs svn_de_matches_correct_shape; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+svn 12A123456B789 yep
+-- must_not_contain --
+<redacted
+-- want --
+svn 12A123456B789 yep

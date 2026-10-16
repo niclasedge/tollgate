@@ -1,0 +1,9 @@
+hook-redactor src/patterns.rs: conn_string_matches_mongodb_srv
+-- input --
+uri=mongodb+srv://u:p@cluster/test others
+-- must_contain --
+<redacted:connection_password>
+-- want --
+uri=mongodb+srv://u:<redacted:connection_password>@cluster/test others
+-- deviation --
+connection-url

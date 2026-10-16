@@ -1,0 +1,7 @@
+hook-redactor tests/integration.rs: logging_writes_what_when_where
+-- input --
+AKIAIOSFODNN7EXAMPLE and AKIAEXAMPLE2EXAMPLE2
+-- must_not_contain --
+AKIA
+-- want --
+<redacted:api_key> and <redacted:api_key>

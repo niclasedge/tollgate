@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: cert_thumbprint_negative_too_short
+-- input --
+Thumbprint: 0123456789abcdef0123456789abcdef0123456
+-- must_not_contain --
+<redacted

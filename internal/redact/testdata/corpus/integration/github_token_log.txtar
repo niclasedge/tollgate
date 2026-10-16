@@ -1,0 +1,7 @@
+hook-redactor tests/integration.rs: auto_routes_log_to_pattern
+-- input --
+key=gh{{}}p_abcdefghij1234567890ABCDEFGHabcdefgh
+-- must_contain --
+key=<redacted:api_key>
+-- must_not_contain --
+gh{{}}p_

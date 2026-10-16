@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs: azure_orderid_passes_through
+-- input --
+OrderId: 11111111-2222-3333-4444-555555555555
+-- must_contain --
+11111111-2222-3333-4444-555555555555
+-- must_not_contain --
+<redacted

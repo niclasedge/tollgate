@@ -1,0 +1,5 @@
+hook-redactor tests/red_team.rs §1: pattern_does_not_redact_innocuous_short_prefix
+-- input --
+command sk-foo failed
+-- must_not_contain --
+<redacted

@@ -1,0 +1,12 @@
+hook-redactor tests/red_team.rs §1: pattern_redacts_pem_private_key_block
+-- input --
+-----BEGIN RSA PRIVATE {{}}KEY-----
+MIIEowIBAAKCAQEA1234567890
+ABCDEFGHIJabcdefghij
+-----END RSA PRIVATE {{}}KEY-----
+-- must_contain --
+<redacted:private_key>
+-- must_not_contain --
+MIIEowIBAAKCAQEA
+-- want --
+<redacted:private_key>

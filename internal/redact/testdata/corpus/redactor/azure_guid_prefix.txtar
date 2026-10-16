@@ -1,0 +1,12 @@
+hook-redactor src/redactor.rs: redact_pattern_preserves_backref_for_azure_guid
+-- input --
+TenantId: 11111111-2222-3333-4444-555555555555
+-- must_contain --
+TenantId
+<redacted:api_key>
+-- must_not_contain --
+11111111-2222-3333-4444-555555555555
+-- want --
+TenantId: <redacted:api_key>
+-- deviation --
+prefix

@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: azure_cred_guid_negative_not_a_guid
+-- input --
+TenantId: nicht-eine-guid
+-- must_not_contain --
+<redacted

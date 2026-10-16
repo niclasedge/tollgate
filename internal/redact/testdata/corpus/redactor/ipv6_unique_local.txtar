@@ -1,0 +1,7 @@
+hook-redactor src/redactor.rs: ipv6_unique_local_passes_through
+-- input --
+host fd00::1 in private mesh
+-- must_contain --
+fd00::1
+-- must_not_contain --
+<redacted

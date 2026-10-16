@@ -1,0 +1,12 @@
+hook-redactor src/patterns.rs: azure_cred_guid_matches_tenant_id.
+Go keeps the separator; Rust rewrites it to '='.
+-- input --
+TenantId: 11111111-2222-3333-4444-555555555555 trailing
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+11111111-2222-3333-4444-555555555555
+-- want --
+TenantId: <redacted:api_key> trailing
+-- deviation --
+prefix

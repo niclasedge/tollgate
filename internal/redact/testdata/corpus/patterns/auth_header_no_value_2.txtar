@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: auth_header_negative_no_value
+-- input --
+Authorization: 
+-- must_not_contain --
+<redacted

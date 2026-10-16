@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_public_ipv4_is_redacted
+-- input --
+DNS 8.8.8.8 fragen
+-- must_contain --
+DNS <redacted:ip> fragen
+-- must_not_contain --
+8.8.8.8

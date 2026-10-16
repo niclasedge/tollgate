@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: azure_cred_guid_negative_orderid
+-- input --
+OrderId: 11111111-2222-3333-4444-555555555555
+-- must_contain --
+11111111-2222-3333-4444-555555555555
+-- must_not_contain --
+<redacted

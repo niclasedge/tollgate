@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: email_matches_basic (address replaced by an invented one)
+-- input --
+contact: jane.roe@mailhost.de here
+-- must_contain --
+contact: <redacted:email> here
+-- must_not_contain --
+jane.roe

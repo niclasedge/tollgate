@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: bearer_token_negative_no_value
+-- input --
+Bearer
+-- must_not_contain --
+<redacted

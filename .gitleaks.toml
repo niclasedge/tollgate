@@ -1,0 +1,22 @@
+title = "tollgate gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic fixtures and public upstream identifiers; every entry is a documented fake or public value."
+paths = [
+  # Redactor corpus and tests deliberately contain fake secrets to prove redaction.
+  '''^internal/redact/testdata/''',
+  '''_test\.go$''',
+  '''^cmd/tollgate/acceptance_test\.go$''',
+  # Specs quote the same fake values.
+  '''^openspec/(specs|changes)/.*spec\.md$''',
+  # Former vendored CLIProxyAPI copy (MIT, upstream test data and public OAuth
+  # client values), removed from the tree but still present in history.
+  '''^third_party/cliproxyapi/''',
+]
+regexes = [
+  # Public OAuth client ID of the Claude Code CLI (not a secret).
+  '''9d1c250a-e61b-44d9-88ed-5944d1962f5e''',
+]

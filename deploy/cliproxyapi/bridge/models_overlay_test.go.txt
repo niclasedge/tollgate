@@ -1,0 +1,48 @@
+package registry
+
+import "testing"
+
+// TestTollgateHaiku55 checks the ADR-0020 overlay against the pinned catalog.
+func TestTollgateHaiku55(t *testing.T) {
+	var haiku, sonnet *ModelInfo
+	n := 0
+	for _, m := range GetClaudeModels() {
+		switch m.ID {
+		case tollgateOverlayID:
+			haiku = m
+			n++
+		case tollgateOverlayBase:
+			sonnet = m
+		}
+	}
+	if haiku == nil || n != 1 {
+		t.Fatalf("%s listed %d times, want once", tollgateOverlayID, n)
+	}
+	if sonnet == nil {
+		t.Fatalf("base %s missing", tollgateOverlayBase)
+	}
+	if haiku.DisplayName != "Claude Haiku 5.5" || haiku.Type != "claude" || haiku.ContextLength != 1000000 || haiku.MaxCompletionTokens != 128000 {
+		t.Fatalf("unexpected entry: %+v", haiku)
+	}
+	if haiku.Thinking == nil || !haiku.Thinking.DynamicAllowed || len(haiku.Thinking.Levels) != 5 {
+		t.Fatalf("unexpected thinking: %+v", haiku.Thinking)
+	}
+	if haiku.Thinking == sonnet.Thinking {
+		t.Fatal("overlay shares thinking with its base")
+	}
+	if got := LookupStaticModelInfo(tollgateOverlayID); got == nil {
+		t.Fatal("static lookup misses the overlay")
+	}
+
+	// Idempotent: a second run, as after a catalog reload, adds nothing.
+	tollgateAddHaiku55()
+	n = 0
+	for _, m := range GetClaudeModels() {
+		if m.ID == tollgateOverlayID {
+			n++
+		}
+	}
+	if n != 1 {
+		t.Fatalf("after rerun %d entries, want 1", n)
+	}
+}

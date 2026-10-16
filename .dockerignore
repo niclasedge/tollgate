@@ -1,0 +1,17 @@
+# Build context of deploy/tollgate/Dockerfile. Never send secrets or local
+# tooling to the Docker daemon.
+.git
+.claude
+.agents
+secrets
+.env
+ref
+bin
+tools
+docs
+openspec
+testdata
+!testdata/fixtures
+third_party
+web/node_modules
+web/dist

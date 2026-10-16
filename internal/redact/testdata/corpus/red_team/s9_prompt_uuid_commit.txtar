@@ -1,0 +1,5 @@
+hook-redactor tests/red_team.rs §9: prompt_allows_uuid_and_commit_hash (as pattern input)
+-- input --
+Bug in trace 550e8400-e29b-41d4-a716-446655440000, commit a1b2c3d4
+-- must_not_contain --
+<redacted

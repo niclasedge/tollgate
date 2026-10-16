@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: bearer_token_matches_basic_long_value
+-- input --
+Basic dXNlcjpwYXNzd29yZA==
+-- must_contain --
+Basic <redacted:api_key>
+-- must_not_contain --
+dXNlcjpwYXNzd29yZA

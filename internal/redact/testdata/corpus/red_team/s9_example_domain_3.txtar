@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_example_domains_pass_clean_via_whitelist
+-- input --
+noreply@example.org sent
+-- must_not_contain --
+<redacted
+-- want --
+noreply@example.org sent

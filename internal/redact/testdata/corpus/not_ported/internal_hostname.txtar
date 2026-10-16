@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs internal_hostname_matches_corp_tld; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+ssh dc01.corp ok
+-- must_not_contain --
+<redacted
+-- want --
+ssh dc01.corp ok

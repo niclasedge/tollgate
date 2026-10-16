@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_iso_date_passes_clean
+-- input --
+Heute ist 2026-04-28
+-- must_not_contain --
+<redacted
+-- want --
+Heute ist 2026-04-28

@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_uuid_and_hex_pass_clean
+-- input --
+hash: 0xDEADBEEF
+-- must_not_contain --
+<redacted
+-- want --
+hash: 0xDEADBEEF

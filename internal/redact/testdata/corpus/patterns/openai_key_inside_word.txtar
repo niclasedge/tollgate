@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: openai_key_negative_inside_word
+-- input --
+Pfad: @Notes/Private/pkm/Vault/tasks/opk-070-pipeline-based-task-implementation-details-here.md
+-- must_not_contain --
+<redacted

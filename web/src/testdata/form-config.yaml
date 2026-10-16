@@ -1,0 +1,20 @@
+version: 1
+builtin:
+  email: true
+  api_keys: true
+  jwt: true
+  connection_urls: true
+  ip_addresses: true
+  private_keys: true
+custom:
+  - name: kundennummer
+    pattern: KD-\d{6}
+    placeholder: customer_id
+    examples:
+      - KD-123456
+words:
+  case_sensitive: false
+  whole_word: true
+  list: []
+allowlist:
+  - noreply@github.com

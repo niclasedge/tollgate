@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: conn_string_negative_word_postgres
+-- input --
+Use postgres for storage.
+-- must_not_contain --
+<redacted

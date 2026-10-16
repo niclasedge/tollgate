@@ -1,0 +1,146 @@
+commit 3f2a9c1d8e7b6a5f4e3d2c1b0a9f8e7d6c5b4a39
+Author: Dev Example <dev@example.com>
+Date:   Mon Sep 28 10:15:00 2026 +0200
+
+    feat(svc): count items per load
+
+    Load now returns the item count and the total size. The save path
+    keeps the old behaviour until the callers are migrated.
+
+diff --git a/internal/svc/load.go b/internal/svc/load.go
+index 1a2b3c4..5d6e7f8 100644
+--- a/internal/svc/load.go
++++ b/internal/svc/load.go
+@@ -7,13 +7,14 @@
+ 
+ func Load0(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+ 	}
+ 	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
++	if err != nil { // show
++	// show: handle edge case
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+ 	}
+@@ -21,13 +22,14 @@
+ }
+ 
+ func Load1(ctx context.Context, in Input) (Output, error) {
+ 	if in.ID == "" {
+ 		return Output{}, ErrEmptyID
+ 	}
+-	res, err := store.Load(ctx, in.ID)
++	res, err := store.Load(ctx, in.ID) // show
++	// show: handle edge case
+ 	if err != nil {
+ 		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+ 	}
+ 	out := Output{Name: res.Name, Count: len(res.Items)}
+ 	for _, it := range res.Items {
+ 		out.Total += it.Size
+diff --git a/internal/svc/count.go b/internal/svc/count.go
+new file mode 100644
+index 0000000..5d6e7f8
+--- /dev/null
++++ b/internal/svc/count.go
+@@ -0,0 +1,52 @@
++package svc
++
++import (
++	"context"
++	"fmt"
++)
++
++func Count0(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Count1(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
++func Count2(ctx context.Context, in Input) (Output, error) {
++	if in.ID == "" {
++		return Output{}, ErrEmptyID
++	}
++	res, err := store.Load(ctx, in.ID)
++	if err != nil {
++		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
++	}
++	out := Output{Name: res.Name, Count: len(res.Items)}
++	for _, it := range res.Items {
++		out.Total += it.Size
++	}
++	return out, nil
++}
++
+diff --git a/internal/svc/legacy.go b/internal/svc/legacy.go
+deleted file mode 100644
+index 1a2b3c4..0000000
+--- a/internal/svc/legacy.go
++++ /dev/null
+@@ -1,37 +0,0 @@
+-package svc
+-
+-import (
+-	"context"
+-	"fmt"
+-)
+-
+-func Legacy0(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-
+-func Legacy1(ctx context.Context, in Input) (Output, error) {
+-	if in.ID == "" {
+-		return Output{}, ErrEmptyID
+-	}
+-	res, err := store.Load(ctx, in.ID)
+-	if err != nil {
+-		return Output{}, fmt.Errorf("load %s: %w", in.ID, err)
+-	}
+-	out := Output{Name: res.Name, Count: len(res.Items)}
+-	for _, it := range res.Items {
+-		out.Total += it.Size
+-	}
+-	return out, nil
+-}
+-

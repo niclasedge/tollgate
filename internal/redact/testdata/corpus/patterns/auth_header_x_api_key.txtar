@@ -1,0 +1,12 @@
+hook-redactor src/patterns.rs: auth_header_matches_x_api_key.
+Rust lets generic_assign overwrite the auth_header result and drops the space.
+-- input --
+X-API-Key: abc123def456
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+abc123def456
+-- want --
+X-API-Key: <redacted:api_key>
+-- deviation --
+overlap

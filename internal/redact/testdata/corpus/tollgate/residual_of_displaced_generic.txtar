@@ -1,0 +1,15 @@
+tollgate (#83, ADR-0005 Nachtrag): the JWT displaces auth_header, but the rest of the
+header value is not left in plain text; it becomes its own finding of the generic type.
+The scheme "Bearer" stays because bearer_token reads it as prefix.
+Rust overwrites the whole header value with auth_header.
+-- input --
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4In0.sigfake weiterer-text
+-- must_contain --
+<redacted:jwt>
+-- must_not_contain --
+weiterer-text
+eyJhbGciOiJIUzI1NiJ9
+-- want --
+Authorization: Bearer <redacted:jwt> <redacted:api_key>
+-- deviation --
+overlap

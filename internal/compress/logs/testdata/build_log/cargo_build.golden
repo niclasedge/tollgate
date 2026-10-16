@@ -1,0 +1,45 @@
+    Updating crates.io index
+ Downloading crates ...
+[Template T1: Downloaded <*> <*>] (10 Zeilen)
+proc-macro2 v1.0.3
+unicode-ident v1.1.4
+[… 6 weitere]
+serde_json v1.8.11
+libc v1.9.12
+[Template T2: Compiling <*> <*>] (36 Zeilen)
+proc-macro2 v1.0.3
+unicode-ident v2.1.4
+[… 32 weitere]
+httparse v2.34.37
+hyper v3.35.38
+   Compiling app v0.4.0 (/src/app)
+warning: unused variable: `timeout`
+  --> src/server.rs:41:9
+   |
+41 |     let timeout = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_timeout`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `retries`
+  --> src/config.rs:17:9
+   |
+17 |     let retries = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_retries`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: `app` (lib) generated 2 warnings (1 duplicate)
+   Compiling app v0.4.0 (/src/app)
+warning: unused variable: `args`
+  --> src/main.rs:9:9
+   |
+9 |     let args = compute();
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_args`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+
+warning: `app` (bin "app") generated 2 warnings
+    Finished `release` profile [optimized] target(s) in 41.37s
+[tollgate: build_log · 49 Zeilen ausgelassen · 2 Warnungen zusammengefasst · 46 gleichartige Zeilen]

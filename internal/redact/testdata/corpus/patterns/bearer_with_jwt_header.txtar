@@ -1,0 +1,7 @@
+hook-redactor src/patterns.rs: bearer_token_matches_bearer_with_jwt
+-- input --
+header value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+-- must_contain --
+Bearer <redacted:api_key>
+-- must_not_contain --
+eyJhbGciOi

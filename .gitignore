@@ -1,0 +1,32 @@
+# Build-Ausgaben
+/bin/
+/web/dist/*
+!/web/dist/.gitkeep
+
+ref/
+
+# Agent-Werkzeug wird lokal installiert, siehe docs/AGENT_SETUP.md
+.claude/
+.agents/
+/tools/
+/tests/*.mjs
+docs/*SESSION*.md
+__pycache__/
+
+# CLIProxyAPI-Secrets für docker compose, siehe deploy/cliproxyapi
+/secrets/
+# Host-Tailnet-IP für docker compose, geschrieben von deploy/setup.sh
+/.env
+/.env.tmp
+
+# Local artifacts
+.DS_Store
+*.local.*
+*.log
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.key
+*.pem
+.env.*

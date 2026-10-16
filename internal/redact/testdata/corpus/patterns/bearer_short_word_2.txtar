@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: bearer_token_negative_short_word
+-- input --
+basic auth
+-- must_not_contain --
+<redacted

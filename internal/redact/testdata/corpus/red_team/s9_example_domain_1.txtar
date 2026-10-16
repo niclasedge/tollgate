@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_example_domains_pass_clean_via_whitelist
+-- input --
+API at example.com/v1
+-- must_not_contain --
+<redacted
+-- want --
+API at example.com/v1

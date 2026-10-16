@@ -1,0 +1,29 @@
+Lockfile is up to date, resolution step is skipped
+[Template T1: Progress: resolved <*> reused <*> downloaded <*> added <*>] (27 Zeilen)
+1, 0, 0, 0
+56, 44, 8, 39
+[… 23 weitere]
+1068, 854, 160, 747
+1119, 895, 167, 783
+ WARN  deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+ WARN  deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+ WARN  deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+ WARN  deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+ WARN  deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+Packages: +842
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 842, reused 790, downloaded 52, added 842, done
+
+dependencies:
++ react 18.3.1
++ react-dom 18.3.1
++ zod 3.23.8
+
+devDependencies:
++ eslint 8.57.1
++ typescript 5.6.2
++ vite 5.4.8
++ vitest 2.1.1
+
+Done in 14.2s
+[tollgate: build_log · 21 Zeilen ausgelassen · 27 gleichartige Zeilen]

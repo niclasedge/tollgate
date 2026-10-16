@@ -1,0 +1,21 @@
+hook-redactor tests/integration.rs: realistic_bash_combined_output.
+Go keeps the JWT label inside the header; Rust replaces the whole header value.
+-- input --
+INFO starting
+ERROR creds: AKIAIOSFODNN7EXAMPLE
+DEBUG curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ4In0.sigfake'
+INFO done
+-- must_contain --
+INFO starting
+INFO done
+<redacted:jwt>
+-- must_not_contain --
+eyJhbGciOiJIUzI1NiJ9
+AKIA
+-- want --
+INFO starting
+ERROR creds: <redacted:api_key>
+DEBUG curl -H 'Authorization: Bearer <redacted:jwt>'
+INFO done
+-- deviation --
+overlap

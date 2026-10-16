@@ -1,0 +1,5 @@
+hook-redactor src/patterns.rs: ipv4_pattern_matches_dotted_quad
+-- input --
+see 8.8.8.8 done
+-- must_contain --
+see <redacted:ip> done

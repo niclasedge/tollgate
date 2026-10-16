@@ -1,0 +1,78 @@
+npm http fetch GET 200 https://registry.npmjs.org/debug 168ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/ms 37ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/inflight 89ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/once 36ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/wrappy 99ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/glob 167ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/minimatch 134ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/brace-expansion 118ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/balanced-match 108ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/fs.realpath 138ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/path-is-absolute 63ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/rimraf 49ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/lru-cache 35ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/yallist 93ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/semver 83ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/ansi-styles 120ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/color-convert 40ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/color-name 134ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/has-flag 160ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/supports-color 55ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/chalk 160ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/escape-string-regexp 126ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/strip-ansi 117ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/ansi-regex 58ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/is-fullwidth-code-point 65ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/string-width 79ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/wrap-ansi 79ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/emoji-regex 144ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/cliui 66ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/yargs 92ms (cache hit)
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm http fetch GET 200 https://registry.npmjs.org/debug/-/debug-3.6.17.tgz 114ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/ms/-/ms-3.8.19.tgz 187ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/inflight/-/inflight-8.8.12.tgz 121ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/once/-/once-7.1.15.tgz 182ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/wrappy/-/wrappy-1.3.2.tgz 73ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/glob/-/glob-3.1.10.tgz 173ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/minimatch/-/minimatch-2.0.18.tgz 58ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/brace-expansion/-/brace-expansion-6.9.0.tgz 38ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/balanced-match/-/balanced-match-7.2.20.tgz 84ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/fs.realpath/-/fs.realpath-6.7.3.tgz 49ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-8.7.15.tgz 99ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/rimraf/-/rimraf-3.1.10.tgz 209ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/lru-cache/-/lru-cache-8.2.16.tgz 25ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/yallist/-/yallist-9.5.4.tgz 196ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/semver/-/semver-9.4.20.tgz 43ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/ansi-styles/-/ansi-styles-9.5.5.tgz 111ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/color-convert/-/color-convert-9.8.16.tgz 104ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/color-name/-/color-name-4.3.12.tgz 209ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/has-flag/-/has-flag-4.8.15.tgz 111ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/supports-color/-/supports-color-1.4.15.tgz 86ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/chalk/-/chalk-6.7.11.tgz 113ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.1.7.tgz 140ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.3.15.tgz 179ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/ansi-regex/-/ansi-regex-8.5.20.tgz 41ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-7.3.15.tgz 65ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/string-width/-/string-width-6.1.12.tgz 138ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-2.2.5.tgz 52ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/emoji-regex/-/emoji-regex-3.9.14.tgz 226ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/cliui/-/cliui-8.5.4.tgz 160ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/yargs/-/yargs-1.0.20.tgz 46ms (cache hit)
+
+added 312 packages, and audited 313 packages in 9s
+
+64 packages are looking for funding
+  run `npm fund` for details
+
+2 moderate severity vulnerabilities
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.

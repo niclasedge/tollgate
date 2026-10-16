@@ -1,0 +1,53 @@
+
+ RUN  v2.1.1 /src/app
+
+ ✓ src/lib/format.test.ts (13 tests) 15ms
+ ✓ src/lib/parse.test.ts (9 tests) 9ms
+ ✓ src/lib/store.test.ts (12 tests) 7ms
+ ✓ src/components/Button.test.ts (13 tests) 6ms
+ ✓ src/components/Modal.test.ts (13 tests) 16ms
+ ✓ src/routes/home.test.ts (11 tests) 37ms
+ ✓ src/routes/settings.test.ts (10 tests) 23ms
+ ❯ src/lib/cart.test.ts (6 tests | 2 failed) 31ms
+   ✓ cart > adds an item
+   ✓ cart > removes an item
+   × cart > applies a percentage coupon
+   ✓ cart > keeps quantity
+   × cart > rejects an expired coupon
+   ✓ cart > clears
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/cart.test.ts > cart > applies a percentage coupon
+AssertionError: expected 9000 to be 8100 // Object.is equality
+
+- Expected
++ Received
+
+- 8100
++ 9000
+
+ ❯ src/lib/cart.test.ts:42:29
+     40|   cart.add({ id: 'a', price: 10000 })
+     41|   cart.applyCoupon('SAVE10')
+     42|   expect(cart.total()).toBe(8100)
+       |                        ^
+     43| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/lib/cart.test.ts > cart > rejects an expired coupon
+Error: Coupon expired
+ ❯ Cart.applyCoupon src/lib/cart.ts:58:13
+     56|     const c = this.coupons.get(code)
+     57|     if (!c) return
+     58|     throw new Error('Coupon expired')
+       |             ^
+ ❯ src/lib/cart.test.ts:50:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed | 7 passed (8)
+      Tests  2 failed | 62 passed (64)
+   Start at  10:41:07
+   Duration  2.84s (transform 310ms, setup 0ms, collect 1.2s, tests 410ms)

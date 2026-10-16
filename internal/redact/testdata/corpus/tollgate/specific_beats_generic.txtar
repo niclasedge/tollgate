@@ -1,0 +1,7 @@
+tollgate (ADR-0005): collect-then-resolve keeps the specific rule (anthropic_key) over generic_assign.
+-- input --
+api_key=sk-{{}}ant-api03-ABCDEF1234567890abcdef1234567890ABCDEF1234567890abcdef1234567890ABCDEF12-XXXXXX_aa
+-- must_not_contain --
+sk-{{}}ant
+-- want --
+api_key=<redacted:api_key>

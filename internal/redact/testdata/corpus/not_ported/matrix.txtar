@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs matrix_iban_birthdate_svn; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+DE89 3704 0044 0532 0130 00 then 15.03.1985 then 12A123456B789
+-- must_not_contain --
+<redacted
+-- want --
+DE89 3704 0044 0532 0130 00 then 15.03.1985 then 12A123456B789

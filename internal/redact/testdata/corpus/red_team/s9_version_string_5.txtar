@@ -1,0 +1,7 @@
+hook-redactor tests/red_team.rs §9: fp_version_string_passes_when_quoted_or_versioned
+-- input --
+v 4.0.0.1 ready
+-- must_not_contain --
+<redacted
+-- want --
+v 4.0.0.1 ready

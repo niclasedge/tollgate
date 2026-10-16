@@ -1,0 +1,8 @@
+hook-redactor src/patterns.rs: auth_header_matches_authorization_colon_bearer
+-- input --
+authorization: Bearer eyJhbGciOi
+-- must_contain --
+authorization: <redacted:api_key>
+-- must_not_contain --
+eyJhbGciOi
+Bearer

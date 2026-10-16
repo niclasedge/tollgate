@@ -1,0 +1,81 @@
+commit 0123456789abcdef
+Author: Tester <t@example.com>
+Date:   Mon Apr 25 12:00:00 2026
+
+    msg line 0
+    msg line 1
+    msg line 2
+    msg line 3
+    msg line 4
+    msg line 5
+    msg line 6
+    msg line 7
+    msg line 8
+    msg line 9
+    msg line 10
+    msg line 11
+    msg line 12
+    msg line 13
+    msg line 14
+    msg line 15
+    msg line 16
+    msg line 17
+    msg line 18
+    msg line 19
+    msg line 20
+    msg line 21
+    msg line 22
+    msg line 23
+    msg line 24
+    msg line 25
+    msg line 26
+    msg line 27
+    msg line 28
+    msg line 29
+    msg line 30
+    msg line 31
+    msg line 32
+    msg line 33
+    msg line 34
+    msg line 35
+    msg line 36
+    msg line 37
+    msg line 38
+    msg line 39
+    msg line 40
+    msg line 41
+    msg line 42
+    msg line 43
+    msg line 44
+    msg line 45
+    msg line 46
+    msg line 47
+    msg line 48
+    msg line 49
+    msg line 50
+    msg line 51
+    msg line 52
+    msg line 53
+    msg line 54
+    msg line 55
+    msg line 56
+    msg line 57
+    msg line 58
+    msg line 59
+
+diff --git a/auth/old_handler.py b/auth/new_handler.py
+similarity index 92%
+rename from auth/old_handler.py
+rename to auth/new_handler.py
+--- a/auth/old_handler.py
++++ b/auth/new_handler.py
+@@ -1,8 +1,8 @@
+ import os
+ import sys
+-from auth import legacy
++from auth import modern
+
+ def authenticate(user):
+     return user.is_valid()
+# bugfix:long-pre-diff
+[tollgate: diff · 1 Zeilen ausgelassen · 1 Kontextzeilen gekürzt]

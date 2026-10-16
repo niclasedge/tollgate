@@ -1,0 +1,5 @@
+hook-redactor tests/red_team.rs §9: prompt_allows_private_ip_and_version_with_v_prefix (as pattern input)
+-- input --
+Server 192.168.1.1 läuft v1.2.3 — prüfen
+-- must_not_contain --
+<redacted

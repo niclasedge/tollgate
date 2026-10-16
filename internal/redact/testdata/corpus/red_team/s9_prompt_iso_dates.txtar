@@ -1,0 +1,5 @@
+hook-redactor tests/red_team.rs §9: prompt_allows_iso_date_and_datetime (as pattern input)
+-- input --
+Termin 2026-04-28 um 10:00, deadline 2026-05-15T18:00:00+02:00
+-- must_not_contain --
+<redacted

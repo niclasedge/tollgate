@@ -1,0 +1,7 @@
+tollgate (ADR-0005): Rust \d matches Arabic-Indic digits but the IPv4 filter drops them; Go does not match. Same output.
+-- input --
+addr ٨.٨.٨.٨ ok
+-- must_not_contain --
+<redacted
+-- want --
+addr ٨.٨.٨.٨ ok

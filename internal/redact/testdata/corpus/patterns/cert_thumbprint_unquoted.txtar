@@ -1,0 +1,11 @@
+hook-redactor src/patterns.rs: cert_thumbprint_matches_40hex_unquoted
+-- input --
+Thumbprint: 0123456789ABCDEF0123456789ABCDEF01234567 done
+-- must_contain --
+<redacted:api_key>
+-- must_not_contain --
+0123456789ABCDEF
+-- want --
+Thumbprint: <redacted:api_key> done
+-- deviation --
+prefix

@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scaffold:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: 22
+      - name: pnpm aktivieren (Version aus web/package.json)
+        run: corepack enable
+      - name: Formatierung und vet
+        run: make lint
+      - name: Tests (Frontend, dann Go mit Race Detector)
+        run: make test
+      - name: Frontend bauen
+        run: make web
+      - name: Statisches Binary mit eingebettetem Frontend bauen
+        run: make build
+      - name: CLIProxyAPI am Pin bauen und Smoke-Test
+        run: |
+          make cpa
+          TOLLGATE_CPA_BIN="$PWD/bin/cli-proxy-api" go test -race -count=1 -run Smoke ./internal/upstream/
+      - name: Typen generieren
+        run: make generate
+      - name: Moduldateien prüfen
+        run: go mod tidy
+      - name: Versionierte und neue Ausgaben prüfen
+        shell: bash
+        run: |
+          git diff --exit-code
+          untracked=$(git ls-files --others --exclude-standard)
+          if [[ -n "$untracked" ]]; then
+            printf 'Nicht versionierte Ausgaben:\n%s\n' "$untracked"
+            exit 1
+          fi

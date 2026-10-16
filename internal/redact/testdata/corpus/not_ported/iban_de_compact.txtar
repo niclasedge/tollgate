@@ -1,0 +1,7 @@
+hook-redactor tests/eu_pii_patterns.rs iban_de_redacted_compact; not ported per ADR-0005; Rust runs without the rule in the parity test
+-- input --
+acct=DE89370400440532013000
+-- must_not_contain --
+<redacted
+-- want --
+acct=DE89370400440532013000

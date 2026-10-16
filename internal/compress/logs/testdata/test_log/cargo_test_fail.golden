@@ -1,0 +1,41 @@
+warning: unused variable: `offset`
+ --> crates/parser/src/lexer.rs:88:13
+   |
+88 |         let offset = self.pos;
+   |             ^^^^^^ help: if this is intentional, prefix it with an underscore: `_offset`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.84s
+test eval::tests::eval_div_by_zero ... FAILED
+
+failures:
+
+---- eval::tests::eval_div_by_zero stdout ----
+thread 'eval::tests::eval_div_by_zero' panicked at crates/parser/src/eval.rs:212:9:
+assertion `left == right` failed: division by zero must be an error
+  left: Ok(Number(0.0))
+ right: Err(DivByZero)
+stack backtrace:
+   0: rust_begin_unwind
+             at /rustc/17067e9ac6d7e98f0e3fd93c0d1f9c3e8a4c0bb5/library/std/src/panicking.rs:665:5
+   1: core::panicking::panic_fmt
+             at /rustc/17067e9ac6d7e98f0e3fd93c0d1f9c3e8a4c0bb5/library/core/src/panicking.rs:76:14
+   2: core::panicking::assert_failed_inner
+   3: core::panicking::assert_failed
+             at /rustc/17067e9ac6d7e98f0e3fd93c0d1f9c3e8a4c0bb5/library/core/src/panicking.rs:361:5
+   4: parser::eval::tests::eval_div_by_zero
+             at ./src/eval.rs:212:9
+   5: parser::eval::tests::eval_div_by_zero::{{closure}}
+             at ./src/eval.rs:205:30
+   6: core::ops::function::FnOnce::call_once
+             at /rustc/17067e9ac6d7e98f0e3fd93c0d1f9c3e8a4c0bb5/library/core/src/ops/function.rs:250:5
+
+
+failures:
+    eval::tests::eval_div_by_zero
+
+test result: FAILED. 29 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+error: test failed, to rerun pass `-p parser --lib`
+[tollgate: test_log · 39 Zeilen ausgelassen · 1 Fehler · 2 Fehlschläge · 2 Stacktraces]

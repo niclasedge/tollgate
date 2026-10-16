@@ -1,0 +1,40 @@
+package registry
+
+// tollgate overlay (ADR-0020, #137): the pinned embedded catalog lacks
+// claude-haiku-5-5, and -local-model plus Anthropic-only egress keep the remote
+// catalog out. This file sorts after model_updater.go, so its init runs after the
+// embedded catalog is loaded. It clones the same-generation claude-sonnet-5-5
+// entry (1M context, 128K output, adaptive thinking) under the Haiku id and does
+// nothing once upstream embeds the model.
+
+const (
+	tollgateOverlayID   = "claude-haiku-5-5"
+	tollgateOverlayBase = "claude-sonnet-5-5"
+)
+
+func init() { tollgateAddHaiku55() }
+
+func tollgateAddHaiku55() {
+	modelsCatalogStore.mu.Lock()
+	defer modelsCatalogStore.mu.Unlock()
+	data := modelsCatalogStore.data
+	if data == nil {
+		return
+	}
+	var base *ModelInfo
+	for _, m := range data.Claude {
+		switch m.ID {
+		case tollgateOverlayID:
+			return
+		case tollgateOverlayBase:
+			base = m
+		}
+	}
+	if base == nil {
+		return
+	}
+	m := cloneModelInfo(base)
+	m.ID = tollgateOverlayID
+	m.DisplayName = "Claude Haiku 5.5"
+	data.Claude = append(data.Claude, m)
+}
