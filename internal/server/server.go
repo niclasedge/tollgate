@@ -90,7 +90,7 @@ type Options struct {
 	// subscription rate limits). It must not block or keep the header.
 	ResponseObserver        func(http.Header)
 	AccountResponseObserver func(string, http.Header)
-	// Frontend serves GET/HEAD of "/", "/index.html" and "/assets/" (optional).
+	// Frontend serves GET/HEAD of "/", "/index.html", "/favicon.svg" and "/assets/" (optional).
 	Frontend http.Handler
 }
 
@@ -206,7 +206,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	case s.admin != nil && (p == "/api" || strings.HasPrefix(p, "/api/")):
 		s.admin.ServeHTTP(w, r)
 	case s.frontend != nil && (r.Method == http.MethodGet || r.Method == http.MethodHead) &&
-		(p == "/" || p == "/index.html" || strings.HasPrefix(p, "/assets/")):
+		(p == "/" || p == "/index.html" || p == "/favicon.svg" || strings.HasPrefix(p, "/assets/")):
 		s.frontend.ServeHTTP(w, r)
 	default:
 		s.serveProxy(w, r)

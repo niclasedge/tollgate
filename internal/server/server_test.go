@@ -785,6 +785,7 @@ func TestRoutesAdminFrontendAndProxy(t *testing.T) {
 		{http.MethodHead, "/", ""},
 		{http.MethodGet, "/index.html", "frontend"},
 		{http.MethodGet, "/assets/app-1.js", "frontend"},
+		{http.MethodGet, "/favicon.svg", "frontend"},
 		{http.MethodPost, "/", "proxy"},
 		{http.MethodGet, "/api", "admin"},
 		{http.MethodGet, "/api/", "admin"},
