@@ -3,7 +3,7 @@
 # UPSTREAM.md describes the update. The upstream module has no replace
 # directives; sum.golang.org verifies the downloaded source checksum.
 # Base images carry tag and multi-arch index digest (#59); update: docs/DEPLOY.md.
-FROM golang:1.26-bookworm@sha256:a688600ca24f8a4d3ca77f95b0dd40704a9fc787c826660eb7ba0b641b8b175d AS builder
+FROM golang:1.26-bookworm@sha256:632dff7351799a5a9954a48dc06670ade72ee44e8c351cdc0e5a57af2fea21af AS builder
 ARG CPA_VERSION=8ef43e4df3b216a42493105d31c2873b69191473
 # MIT source stays in the build only; ADR-0016 adds the reviewed refresh barrier,
 # ADR-0020 the catalog overlay for claude-haiku-5-5.
@@ -20,7 +20,7 @@ RUN dir=$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@${CPA_VE
     && CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /out/cli-proxy-api ./cmd/server \
     && cp LICENSE /out/LICENSE
 
-FROM debian:bookworm-slim@sha256:3783cc01769c7b2b1b83a5c5ad96c815348e28ed7da68e2e3687004faa906251
+FROM debian:bookworm-slim@sha256:7ff6ba31527b9e336162fa061746c366c4b2032f4d2cff2078bea43f78efe3f8
 # iptables: the entrypoint limits egress to Anthropic (ADR-0017); setpriv
 # comes with util-linux from the base image.
 RUN apt-get update \
