@@ -1,0 +1,309 @@
+name: tollgate-world
+version: "0.1.0"
+taxonomy: world
+purpose: "Das Repo tollgate: wo was liegt, welche Regeln gelten, wie man den Stand ableitet."
+files:
+  - path: world.md
+    role: orientation
+    summary: "Identitaet, Routen und Coverage-Map."
+  - path: boundaries.md
+    role: boundaries
+    summary: "Was diese World nicht weiss und nicht entscheidet."
+  - path: auftrag.md
+    role: world
+    summary: "Auftrag · Ursprung: Ziel, Referenzen, Phasen."
+  - path: pipeline.md
+    role: world
+    summary: "Pipeline · Proxy: Datenfluss, Stufen, Technik, Nachvollziehbarkeit."
+  - path: redactor.md
+    role: world
+    summary: "Redactor · Filter: Konfiguration, Filtertypen, Wortlisten, Beispiel-Schema."
+  - path: frontend.md
+    role: world
+    summary: "Frontend · Oberflaeche: Technik, Funktionen, Design, Client-Einrichtung."
+  - path: tests.md
+    role: world
+    summary: "Tests · Pruefung: Testarten, Standards."
+  - path: zusammenarbeit.md
+    role: world
+    summary: "Zusammenarbeit · Werkstatt: OpenSpec-Ablauf, GitButler, Subagenten."
+atoms:
+  - id: coverage-map
+    address: world.md#coverage-map
+    taxonomy: world
+    regions: [identity, ontology, terrain, actors, laws, history, state, affordances]
+    situations: [fresh, handover, post-compaction]
+    purpose: width
+    runtime: any
+    order: 10
+    priority: core
+  - id: know-the-edges
+    address: boundaries.md
+    taxonomy: world
+    regions: [laws, state]
+    situations: [fresh, handover, post-compaction]
+    purpose: depth
+    runtime: any
+    order: 15
+    requires: [coverage-map]
+    priority: core
+  - id: auftrag
+    address: auftrag.md#auf-einen-blick
+    taxonomy: world
+    regions: [identity, history, terrain]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 20
+    requires: [coverage-map]
+    priority: recommended
+  - id: auftrag-ziel
+    address: auftrag.md#ziel
+    taxonomy: world
+    regions: [identity]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 21
+    requires: [auftrag]
+    priority: recommended
+  - id: auftrag-referenzen
+    address: auftrag.md#referenzen
+    taxonomy: world
+    regions: [terrain, laws, history]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 22
+    requires: [auftrag]
+    priority: recommended
+  - id: auftrag-phasen
+    address: auftrag.md#phasen
+    taxonomy: world
+    regions: [history, state]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 23
+    requires: [auftrag]
+    priority: recommended
+  - id: pipeline
+    address: pipeline.md#auf-einen-blick
+    taxonomy: world
+    regions: [ontology, terrain, laws]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 40
+    requires: [coverage-map]
+    priority: recommended
+  - id: pipeline-datenfluss
+    address: pipeline.md#datenfluss
+    taxonomy: world
+    regions: [ontology, laws]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 41
+    requires: [pipeline]
+    priority: recommended
+  - id: pipeline-stufen
+    address: pipeline.md#stufen
+    taxonomy: world
+    regions: [ontology, terrain]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 42
+    requires: [pipeline]
+    priority: recommended
+  - id: pipeline-technik
+    address: pipeline.md#technik
+    taxonomy: world
+    regions: [terrain, history]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 43
+    requires: [pipeline]
+    priority: recommended
+  - id: pipeline-nachvollziehbarkeit
+    address: pipeline.md#nachvollziehbarkeit
+    taxonomy: world
+    regions: [laws, terrain]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 44
+    requires: [pipeline]
+    priority: recommended
+  - id: redactor
+    address: redactor.md#auf-einen-blick
+    taxonomy: world
+    regions: [ontology, laws, terrain]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 60
+    requires: [coverage-map]
+    priority: recommended
+  - id: redactor-konfiguration
+    address: redactor.md#konfiguration
+    taxonomy: world
+    regions: [laws, terrain]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 61
+    requires: [redactor]
+    priority: recommended
+  - id: redactor-filtertypen
+    address: redactor.md#filtertypen
+    taxonomy: world
+    regions: [ontology]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 62
+    requires: [redactor]
+    priority: recommended
+  - id: redactor-wortlisten
+    address: redactor.md#wortlisten
+    taxonomy: world
+    regions: [laws]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 63
+    requires: [redactor]
+    priority: recommended
+  - id: redactor-beispiel-schema
+    address: redactor.md#beispiel-schema
+    taxonomy: world
+    regions: [ontology, affordances]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 64
+    requires: [redactor]
+    priority: recommended
+  - id: frontend
+    address: frontend.md#auf-einen-blick
+    taxonomy: world
+    regions: [terrain, affordances, identity]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 80
+    requires: [coverage-map]
+    priority: recommended
+  - id: frontend-technik
+    address: frontend.md#technik
+    taxonomy: world
+    regions: [terrain, laws]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 81
+    requires: [frontend]
+    priority: recommended
+  - id: frontend-funktionen
+    address: frontend.md#funktionen
+    taxonomy: world
+    regions: [affordances]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 82
+    requires: [frontend]
+    priority: recommended
+  - id: frontend-design
+    address: frontend.md#design
+    taxonomy: world
+    regions: [identity]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 83
+    requires: [frontend]
+    priority: recommended
+  - id: frontend-client-einrichtung
+    address: frontend.md#client-einrichtung
+    taxonomy: world
+    regions: [affordances]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 84
+    requires: [frontend]
+    priority: recommended
+  - id: tests
+    address: tests.md#auf-einen-blick
+    taxonomy: world
+    regions: [laws, affordances, terrain]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 100
+    requires: [coverage-map]
+    priority: recommended
+  - id: tests-testarten
+    address: tests.md#testarten
+    taxonomy: world
+    regions: [laws, terrain]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 101
+    requires: [tests]
+    priority: recommended
+  - id: tests-standards
+    address: tests.md#standards
+    taxonomy: world
+    regions: [laws]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 102
+    requires: [tests]
+    priority: recommended
+  - id: zusammenarbeit
+    address: zusammenarbeit.md#auf-einen-blick
+    taxonomy: world
+    regions: [actors, laws, affordances]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 120
+    requires: [coverage-map]
+    priority: recommended
+  - id: zusammenarbeit-tracking-und-openspec
+    address: zusammenarbeit.md#tracking-und-openspec
+    taxonomy: world
+    regions: [laws, affordances]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 121
+    requires: [zusammenarbeit]
+    priority: recommended
+  - id: zusammenarbeit-gitbutler
+    address: zusammenarbeit.md#gitbutler
+    taxonomy: world
+    regions: [laws, affordances]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 122
+    requires: [zusammenarbeit]
+    priority: recommended
+  - id: zusammenarbeit-subagenten
+    address: zusammenarbeit.md#subagenten
+    taxonomy: world
+    regions: [actors, laws]
+    situations: [handover]
+    purpose: depth
+    runtime: any
+    order: 123
+    requires: [zusammenarbeit]
+    priority: recommended
