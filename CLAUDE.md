@@ -19,8 +19,7 @@ verbindlich: `docs/standards.md`, `docs/ops-lab.md`.
   ungeklärten Lizenzen ins Repo. `ref/` wird nie committet.
 - Vor Kopieren oder Portieren LICENSE prüfen, Herkunft in `third_party/NOTICE.md`, Patches
   in `third_party/<name>/PATCHES.md` begründen. CLIProxyAPI bleibt ungepatcht (sonst neues ADR).
-- `Makefile`, CI und Gate-Regeln sind Ein-Weg-Türen: ein Mensch liest den Diff vor dem Merge.
-  Push, PR und Merge nur auf ausdrücklichen Auftrag (`docs/ops-lab.md`).
+- `Makefile`, CI und Gate-Regeln sind Ein-Weg-Türen: der Commit nennt sie.
 - Ein Issue = ein OpenSpec-Change auf eigenem GitButler-Branch im gemeinsamen Workspace.
   Keine Worktrees, kein `git checkout`/`switch`/`stash`, kein `but teardown`. Nur eigene
   Change-IDs committen (`but commit -b <branch> -m … <id>…`); fremde Änderungen nie anfassen.
