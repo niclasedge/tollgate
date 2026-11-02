@@ -2,6 +2,8 @@
 # docs/DEPLOY.md). Development checks stay in the Makefile (make test).
 
 # Local agent tooling (ops-lab), not versioned; see docs/AGENT_SETUP.md.
+# Local project recipes override generic imported development checks.
+set allow-duplicate-recipes
 import? 'tools/ops.just'
 
 set shell := ["bash", "-euo", "pipefail", "-c"]
@@ -53,3 +55,33 @@ logs:
 # Build and test the stack without a Tailnet, then remove it again
 smoke:
     deploy/smoke.sh
+
+test *dateien:
+    #!/usr/bin/env bash
+    if [ -z "{{dateien}}" ]; then
+        out=$(make test 2>&1) || { printf '%s\n' "$out"; exit 1; }; printf '%s\n' "$out" | tail -n 4
+    else
+        pakete=$(for f in {{dateien}}; do echo "./$(dirname "$f")"; done | sort -u)
+        out=$(go test -race ${pakete:-./...} 2>&1) || { printf '%s\n' "$out"; exit 1; }; printf '%s\n' "$out" | tail -n 4
+    fi
+
+
+lint *dateien:
+    #!/usr/bin/env bash
+    if [ -z "{{dateien}}" ]; then
+        out=$(make lint 2>&1) || { printf '%s\n' "$out"; exit 1; }
+    else
+        out=$(gofmt -l {{dateien}}) || exit 1
+        [ -z "$out" ] || { printf '%s\n' "$out"; exit 1; }
+        pakete=$(for f in {{dateien}}; do echo "./$(dirname "$f")"; done | sort -u)
+        go vet $pakete || exit 1
+    fi
+    echo "lint ok"
+
+
+cov:
+    #!/usr/bin/env bash
+    out=$(make web-test 2>&1) || { printf '%s\n' "$out"; exit 1; }; printf '%s\n' "$out" | tail -n 4
+    mkdir -p coverage
+    out=$(go test -race -coverprofile=coverage/cover.out ./... 2>&1) || { printf '%s\n' "$out"; exit 1; }; printf '%s\n' "$out" | tail -n 4
+    go run github.com/jandelgado/gcov2lcov@latest -infile coverage/cover.out -outfile coverage/lcov.info

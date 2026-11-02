@@ -21,12 +21,15 @@ files:
   - path: frontend.md
     role: world
     summary: "Frontend · Oberflaeche: Technik, Funktionen, Design, Client-Einrichtung."
-  - path: tests.md
+  - path: test.md
     role: world
     summary: "Tests · Pruefung: Testarten, Standards."
   - path: zusammenarbeit.md
     role: world
     summary: "Zusammenarbeit · Werkstatt: OpenSpec-Ablauf, GitButler, Subagenten."
+  - path: build.md
+    role: world
+    summary: "Build commands and source locations."
 atoms:
   - id: coverage-map
     address: world.md#coverage-map
@@ -237,8 +240,8 @@ atoms:
     order: 84
     requires: [frontend]
     priority: recommended
-  - id: tests
-    address: tests.md#auf-einen-blick
+  - id: test
+    address: test.md#auf-einen-blick
     taxonomy: world
     regions: [laws, affordances, terrain]
     situations: [handover]
@@ -247,25 +250,25 @@ atoms:
     order: 100
     requires: [coverage-map]
     priority: recommended
-  - id: tests-testarten
-    address: tests.md#testarten
+  - id: test-testarten
+    address: test.md#testarten
     taxonomy: world
     regions: [laws, terrain]
     situations: [handover]
     purpose: depth
     runtime: any
     order: 101
-    requires: [tests]
+    requires: [test]
     priority: recommended
-  - id: tests-standards
-    address: tests.md#standards
+  - id: test-standards
+    address: test.md#standards
     taxonomy: world
     regions: [laws]
     situations: [handover]
     purpose: depth
     runtime: any
     order: 102
-    requires: [tests]
+    requires: [test]
     priority: recommended
   - id: zusammenarbeit
     address: zusammenarbeit.md#auf-einen-blick
@@ -306,4 +309,14 @@ atoms:
     runtime: any
     order: 123
     requires: [zusammenarbeit]
+    priority: recommended
+  - id: build
+    address: build.md#auf-einen-blick
+    taxonomy: world
+    regions: [affordances, terrain]
+    situations: [handover]
+    purpose: width
+    runtime: any
+    order: 150
+    requires: [coverage-map]
     priority: recommended

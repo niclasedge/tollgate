@@ -2,6 +2,8 @@
 
 ## Auf einen Blick
 
+`just test` runs the suite; `just lint` checks without autofix; `just cov` writes `coverage/lcov.info`. File arguments select test or lint targets.
+
 `make test` ist die Projektprüfung: Frontend-Tests plus `go test -race ./...`; die CI führt sie ebenfalls aus. Getestet wird pro Stufe, mit Golden-Files, Fuzzing, Integrations-, Cache-, Konfigurations-, Paritäts- und End-to-End-Tests.
 
 ## Testarten

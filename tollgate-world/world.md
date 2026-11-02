@@ -26,9 +26,10 @@ Eine Zeile je Bereich. Nur den Abschnitt hinter dem Anker lesen, dann tiefer, we
 | Pipeline | `tollgate-world/pipeline.md#auf-einen-blick` | Datenfluss, Stufen, Technik, Nachvollziehbarkeit | Eine Pipeline-Stufe, den Proxy, Upstream oder Traces ändern. |
 | Redactor | `tollgate-world/redactor.md#auf-einen-blick` | Konfiguration, Filtertypen, Wortlisten, Beispiel-Schema | Filter, Wortlisten, YAML-Import/-Export oder Konfigurationsversionen ändern. |
 | Frontend | `tollgate-world/frontend.md#auf-einen-blick` | Technik, Funktionen, Design, Client-Einrichtung | Eine Ansicht, das Design oder die Client-Keys ändern. |
-| Tests | `tollgate-world/tests.md#auf-einen-blick` | Testarten, Standards | Tests schreiben oder auswählen. |
+| Tests | `tollgate-world/test.md#auf-einen-blick` | Testarten, Standards | Tests schreiben oder auswählen. |
 | Zusammenarbeit | `tollgate-world/zusammenarbeit.md#auf-einen-blick` | OpenSpec-Ablauf, GitButler, Subagenten | Ein Issue beginnen, committen oder Subagenten einsetzen. |
 | Architektur | `docs/ARCHITECTURE.md` · `docs/adr/README.md` | Entscheidungen und ihre Begründung | Eine Entscheidung verstehen oder ändern. |
+| Build | `tollgate-world/build.md#auf-einen-blick` | Commands and source locations | Run build checks. |
 | Mission (live) | `gh issue list -R niclasedge/tollgate --state open` · `openspec list` | offene Arbeit und laufende Changes; nicht Teil der World | Wissen, was als Nächstes ansteht. |
 | Zustand (live) | `just status` · `git log --oneline` · `but status` | Stack, Historie, Workspace | Zustand brauchen; nie aus einer Datei abschreiben. |
 | Skills | `just --list` · `make` (Targets im `Makefile`) · `/opsx:*` | Betrieb, Build, Tests, OpenSpec | Einen Ablauf ausführen statt improvisieren. |
