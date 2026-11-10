@@ -28,8 +28,9 @@ umgeschrieben. Ändert sich eine Entscheidung, gibt es ein neues ADR, das das al
 | [0016](0016-cpa-refresh-barriere.md) | Kleine CPA-Erweiterung als Refresh-Barriere | Angenommen |
 | [0017](0017-cpa-egress-nur-anthropic.md) | Egress des CPA-Namespaces nur zu Anthropic | Angenommen |
 | [0019](0019-alarme-spool-notifier.md) | Alarme über Spool und Notifier-Container | Angenommen |
-| [0020](0020-cpa-katalog-overlay.md) | Katalog-Overlay für Modelle, die der CPA-Pin nicht kennt | Angenommen |
+| [0020](0020-cpa-katalog-overlay.md) | Katalog-Overlay für Modelle, die der CPA-Pin nicht kennt | Abgelöst durch 0022 |
 | [0021](0021-namenslisten-klartext-bearbeiten.md) | Namenslisten, Klartext nur zum Bearbeiten | Angenommen |
+| [0022](0022-cpa-v8-0-63.md) | CPA-Pin v8.0.63, Header-Baseline gepinnt, kv-store aus | Angenommen |
 
 ## Vorlage
 
@@ -62,6 +63,6 @@ Alle Quellenangaben in den ADRs beziehen sich auf diese Stände:
 
 | Quelle | Stand | Lizenz |
 |---|---|---|
-| CLIProxyAPI (`github.com/router-for-me/CLIProxyAPI`) | Commit `8ef43e4df3b216a42493105d31c2873b69191473`, Modul `/v8` | MIT |
+| CLIProxyAPI (`github.com/router-for-me/CLIProxyAPI`) | Commit `6db7d4b839d86c5b24e17bbe73bcd4db18ef1b1a` (v8.0.63), Modul `/v8` | MIT |
 | hook-redactor (lokal, `ref/hook-redactor`) | v0.8.1 | MIT |
 | Headroom (lokal, `ref/headroom`) | Arbeitsstand 2026-10-04 | Apache-2.0 |

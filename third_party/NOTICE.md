@@ -3,7 +3,7 @@
 ## CLIProxyAPI
 
 - **Quelle:** https://github.com/router-for-me/CLIProxyAPI
-- **Commit:** `8ef43e4df3b216a42493105d31c2873b69191473`
+- **Commit:** `6db7d4b839d86c5b24e17bbe73bcd4db18ef1b1a` (v8.0.63)
 - **Lizenz:** MIT; der Volltext liegt im Image unter
   `/usr/share/doc/cli-proxy-api/LICENSE`
 - **Copyright:**
@@ -13,7 +13,7 @@
   per `go install` aus dem gepinnten Upstream-Modul; es läuft als eigener Prozess und wird
   nicht in tollgate importiert (ADR-0001, ADR-0014). Pin und Update-Ablauf:
   `deploy/cliproxyapi/UPSTREAM.md`.
-- **Änderungen:** begrenzte Refresh-Barriere nur im temporären Image-Build (ADR-0016); Begründung in `cpa-refresh-barrier/PATCHES.md`. Katalog-Overlay für `claude-haiku-5-5` und `claude-fable-5-2`, ebenfalls nur im Build (ADR-0020); Begründung in `cpa-model-overlay/PATCHES.md`. Kein Upstream-Code im Repository.
+- **Änderungen:** begrenzte Refresh-Barriere nur im temporären Image-Build (ADR-0016); Begründung in `cpa-refresh-barrier/PATCHES.md`. Kein Upstream-Code im Repository.
 
 Die Copyright-Zeilen sind unverändert aus der `LICENSE` des Upstream übernommen
 (einschließlich der dortigen Schreibweise "2025-2005.9").

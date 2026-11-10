@@ -1,6 +1,6 @@
 # ADR-0020: Katalog-Overlay für Modelle, die der CPA-Pin nicht kennt
 
-- **Status:** Angenommen
+- **Status:** Abgelöst durch [ADR-0022](0022-cpa-v8-0-63.md)
 - **Datum:** 2026-10-09
 - **Issue:** #137
 - **Ergänzt:** [ADR-0016](0016-cpa-refresh-barriere.md) (gleicher Bridge-Mechanismus),

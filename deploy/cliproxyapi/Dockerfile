@@ -4,9 +4,8 @@
 # directives; sum.golang.org verifies the downloaded source checksum.
 # Base images carry tag and multi-arch index digest (#59); update: docs/DEPLOY.md.
 FROM golang:1.26-bookworm@sha256:632dff7351799a5a9954a48dc06670ade72ee44e8c351cdc0e5a57af2fea21af AS builder
-ARG CPA_VERSION=8ef43e4df3b216a42493105d31c2873b69191473
-# MIT source stays in the build only; ADR-0016 adds the reviewed refresh barrier,
-# ADR-0020 the catalog overlay for models the pin lacks.
+ARG CPA_VERSION=6db7d4b839d86c5b24e17bbe73bcd4db18ef1b1a
+# MIT source stays in the build only; ADR-0016 adds the reviewed refresh barrier.
 COPY bridge /bridge
 RUN dir=$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@${CPA_VERSION} \
         | sed -n 's/^[[:space:]]*"Dir": "\(.*\)",$/\1/p') \
@@ -15,7 +14,6 @@ RUN dir=$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@${CPA_VE
     && /bridge/apply.sh /src-cpa \
     && cd /src-cpa \
     && go test -race -run '^TestTollgatePause' ./sdk/cliproxy/auth \
-    && go test -race -run '^TestTollgateOverlay' ./internal/registry \
     && mkdir -p /out \
     && CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /out/cli-proxy-api ./cmd/server \
     && cp LICENSE /out/LICENSE

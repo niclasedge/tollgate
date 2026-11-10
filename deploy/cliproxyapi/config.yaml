@@ -7,6 +7,9 @@ server:
   # Hard rule: CLIProxyAPI only listens on localhost.
   host: "127.0.0.1"
   port: 8317
+  # ADR-0022: no bbolt file next to the token in auth-dir; caches stay in RAM.
+  kv-store:
+    disabled: true
 
 management:
   # Management API is reachable from localhost only and needs the key.
@@ -28,6 +31,12 @@ upstream:
   claude:
     # Safety net: never rewrite the system prompt (would break the prompt cache).
     disable-claude-cloak-mode: true
+    # ADR-0022: keep the pre-v8.0.63 baselines. Claude Code >= 2.1.280 stays
+    # "confirmed", so its headers and betas pass through unchanged.
+    header-defaults:
+      user-agent: "claude-cli/2.1.280 (external, cli)"
+      package-version: "0.112.1"
+      runtime-version: "v26.3.0"
 
 oauth:
   # Must contain only the token file of the active account.

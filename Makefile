@@ -9,13 +9,19 @@ build:
 	mkdir -p bin
 	CGO_ENABLED=0 go build -o bin/tollgate ./cmd/tollgate
 
-# Builds bin/cli-proxy-api from the pinned upstream commit, e.g. for the
-# smoke test: TOLLGATE_CPA_BIN=$PWD/bin/cli-proxy-api go test -run Smoke ./internal/upstream/
+# Builds bin/cli-proxy-api from the pinned upstream commit like the image does:
+# a temporary module copy is the main module, so its replace directive applies
+# (ADR-0022), and the build-only bridge is applied. E.g. for the smoke test:
+# TOLLGATE_CPA_BIN=$PWD/bin/cli-proxy-api go test -run Smoke ./internal/upstream/
 cpa:
 	@test -n "$(CPA_VERSION)" || { echo "ARG CPA_VERSION missing in deploy/cliproxyapi/Dockerfile"; exit 1; }
 	mkdir -p bin
-	GOBIN=$(CURDIR)/bin CGO_ENABLED=0 go install -ldflags="-s -w" github.com/router-for-me/CLIProxyAPI/v8/cmd/server@$(CPA_VERSION)
-	mv bin/server bin/cli-proxy-api
+	src=$$(mktemp -d)/cpa \
+		&& dir=$$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@$(CPA_VERSION) \
+			| sed -n 's/^[[:space:]]*"Dir": "\(.*\)",$$/\1/p') \
+		&& test -n "$$dir" && cp -R "$$dir" "$$src" && chmod -R u+w "$$src" \
+		&& sh deploy/cliproxyapi/bridge/apply.sh "$$src" \
+		&& cd "$$src" && CGO_ENABLED=0 go build -ldflags="-s -w" -o $(CURDIR)/bin/cli-proxy-api ./cmd/server
 
 # Builds the frontend into web/dist (embedded by `make build`). Empties dist
 # first but keeps the versioned .gitkeep (rm does not glob dotfiles).

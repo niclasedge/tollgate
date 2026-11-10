@@ -2,15 +2,15 @@
 
 - **Upstream:** https://github.com/router-for-me/CLIProxyAPI
 - **Modul:** `github.com/router-for-me/CLIProxyAPI/v8`, Paket `cmd/server`
-- **Commit:** `8ef43e4df3b216a42493105d31c2873b69191473`
-  (Pseudo-Version `v8.0.14-0.20261004053141-8ef43e4df3b2`)
+- **Commit:** `6db7d4b839d86c5b24e17bbe73bcd4db18ef1b1a`
+  (Tag `v8.0.63`)
 - **Lizenz:** MIT
   - Copyright (c) 2025-2005.9 Luis Pater
   - Copyright (c) 2025.9-present Router-For.ME
 - **Einbindung:** eigener Prozess, nie von tollgate importiert
   ([ADR-0001](../../docs/adr/0001-cliproxyapi-als-eigener-prozess.md)). Der Code liegt nicht
   im Repo, sondern wird beim Bauen aus dem Go-Modul-Proxy geholt
-  ([ADR-0014](../../docs/adr/0014-cliproxyapi-gepinnt-ohne-kopie.md)). Die begrenzte Refresh-Barriere aus [ADR-0016](../../docs/adr/0016-cpa-refresh-barriere.md) wird nur im temporären Build angewendet, ebenso das Katalog-Overlay aus [ADR-0020](../../docs/adr/0020-cpa-katalog-overlay.md).
+  ([ADR-0014](../../docs/adr/0014-cliproxyapi-gepinnt-ohne-kopie.md)). Die begrenzte Refresh-Barriere aus [ADR-0016](../../docs/adr/0016-cpa-refresh-barriere.md) wird nur im temporären Build angewendet.
 
 Herkunft und Lizenz stehen zusätzlich in [`third_party/NOTICE.md`](../../third_party/NOTICE.md).
 
@@ -20,12 +20,15 @@ Technisch nur an einer Stelle: `ARG CPA_VERSION=…` in [`Dockerfile`](Dockerfil
 Image lädt damit die Quellen per `go mod download`, prüft die dokumentierte Refresh-Barriere
 und baut das Binary mit `CGO_ENABLED=0`; nur der Plugin-Loader braucht cgo, und dafür hat der Upstream einen
 `!cgo`-Stub. Die `LICENSE` des Moduls kopiert der Build nach
-`/usr/share/doc/cli-proxy-api/LICENSE` im Image. `make cpa` liest denselben Wert aus dem Dockerfile und baut `bin/cli-proxy-api`.
+`/usr/share/doc/cli-proxy-api/LICENSE` im Image. `make cpa` liest denselben Wert aus dem Dockerfile und baut `bin/cli-proxy-api` auf demselben Weg wie das Image.
 Der Commit in dieser Datei und in `NOTICE.md` ist Dokumentation; `internal/upstream/pin_test.go`
 prüft, dass alle drei übereinstimmen.
 
-`go install` funktioniert, weil das Upstream-`go.mod` keine `replace`- oder
-`exclude`-Direktiven hat. Die Prüfsumme des Moduls kommt aus sum.golang.org.
+Seit v8.0.55 hat das Upstream-`go.mod` genau ein `replace`: `github.com/MoeForge/moego` →
+`github.com/router-for-me/moego` (MIT, Fork des Upstream-Teams). `go install …@<commit>`
+lehnt das ab; Image und `make cpa` bauen deshalb in einer temporären Kopie des Moduls, in der
+das `replace` greift ([ADR-0022](../../docs/adr/0022-cpa-v8-0-63.md)). Die Prüfsummen
+kommen aus sum.golang.org und dem Upstream-`go.sum`.
 
 ## Lokale Referenz
 
@@ -35,7 +38,7 @@ committet.
 
 ```sh
 git clone https://github.com/router-for-me/CLIProxyAPI.git ref/cliproxyapi
-git -C ref/cliproxyapi checkout --detach 8ef43e4df3b216a42493105d31c2873b69191473
+git -C ref/cliproxyapi checkout --detach 6db7d4b839d86c5b24e17bbe73bcd4db18ef1b1a
 ```
 
 Liegt der Klon schon an anderer Stelle, reicht ein Symlink:
@@ -43,8 +46,9 @@ Liegt der Klon schon an anderer Stelle, reicht ein Symlink:
 
 ## Update-Ablauf
 
-1. Neuen Commit wählen und in `ref/cliproxyapi` auschecken. Prüfen, dass `go.mod` weiterhin
-   keine `replace`-Direktiven hat und die `LICENSE` unverändert MIT ist.
+1. Neuen Commit wählen und in `ref/cliproxyapi` auschecken. Prüfen, dass `go.mod` keine
+   `replace`-Direktiven außer dem für `moego` hat (Ziel, Lizenz, `go.sum`-Eintrag) und die
+   `LICENSE` unverändert MIT ist.
 2. Die Änderungen seit dem alten Pin lesen, mindestens die Claude-Erkennung, das Cloaking
    und die Management-API (Quellen in ADR-0001).
 3. `config.example.yaml` gegen [`config.yaml`](config.yaml) vergleichen. Neue ausgehende
@@ -65,9 +69,13 @@ Begründung, Update-Regeln und Tests: [PATCHES.md](../../third_party/cpa-refresh
 Der Image-Build führt den Race-Regressionstest am Pin aus. Bei Updates beide
 Einfügestellen, Credential-Persistenz und Mutex-Laufzeit prüfen.
 
-## Katalog-Overlay (#137)
+## Header-Baseline und kv-store (#4, ADR-0022)
 
-`bridge/models_overlay.go.txt` ergänzt im Build `claude-haiku-5-5` und `claude-fable-5-2`,
-die der eingebettete Katalog am Pin nicht kennt. Begründung: [PATCHES.md](../../third_party/cpa-model-overlay/PATCHES.md).
-Bei Updates prüfen, ob `internal/registry/models/models.json` die Modelle inzwischen
-enthält. Wenn ja, deren Einträge entfernen; ist die Tabelle leer, Overlay, Test, `apply.sh`-Zeilen und Dockerfile-Test.
+Ab v8.0.63 hebt CPA die Claude-Code-Baseline bei jedem Release an; ein älterer Client gilt
+dann nicht mehr als Claude Code und bekommt Betas und Header umgeschrieben.
+[`config.yaml`](config.yaml) pinnt deshalb `upstream.claude.header-defaults` auf
+`claude-cli/2.1.280`. Bei Updates prüfen, ob `helps/claude_device_profile.go` die
+Schwelle oder die Header-Logik ändert. `server.kv-store.disabled: true` hält die
+bbolt-Datei aus dem auth-dir. Neue Body-Eingriffe des Claude-Executors (zuletzt
+`thinking.block_binding`) und neue ausgehende Ziele (zuletzt der xAI-Check gegen
+`registry.npmjs.org`, vom Egress-Filter verworfen) im ADR nachtragen.
