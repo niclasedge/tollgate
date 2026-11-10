@@ -21,8 +21,10 @@ type Price struct {
 // longest matching prefix wins, so "claude-opus-5-5" beats "claude-opus-5".
 // Claude Haiku 5.5 costs 5x for prompts over 100K tokens; reports sum usage
 // before pricing, so only the lower tier is listed and its cost is a lower
-// bound (#138).
+// bound (#138). Claude Fable 5.2 is priced like Fable 5.1, as the CPA v8.0.63
+// catalog describes it (#3).
 var prices = map[string]Price{
+	"claude-fable-5-2":  {Input: 10000, Output: 50000, CacheRead: 250, CacheWrite: 12500},
 	"claude-fable-5-1":  {Input: 10000, Output: 50000, CacheRead: 250, CacheWrite: 12500},
 	"claude-mythos-5-1": {Input: 10000, Output: 50000, CacheRead: 250, CacheWrite: 12500},
 	"claude-fable-5":    {Input: 10000, Output: 50000, CacheRead: 1000, CacheWrite: 12500},

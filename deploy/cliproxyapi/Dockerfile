@@ -6,7 +6,7 @@
 FROM golang:1.26-bookworm@sha256:632dff7351799a5a9954a48dc06670ade72ee44e8c351cdc0e5a57af2fea21af AS builder
 ARG CPA_VERSION=8ef43e4df3b216a42493105d31c2873b69191473
 # MIT source stays in the build only; ADR-0016 adds the reviewed refresh barrier,
-# ADR-0020 the catalog overlay for claude-haiku-5-5.
+# ADR-0020 the catalog overlay for models the pin lacks.
 COPY bridge /bridge
 RUN dir=$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@${CPA_VERSION} \
         | sed -n 's/^[[:space:]]*"Dir": "\(.*\)",$/\1/p') \
@@ -15,7 +15,7 @@ RUN dir=$(go mod download -json github.com/router-for-me/CLIProxyAPI/v8@${CPA_VE
     && /bridge/apply.sh /src-cpa \
     && cd /src-cpa \
     && go test -race -run '^TestTollgatePause' ./sdk/cliproxy/auth \
-    && go test -race -run '^TestTollgateHaiku55' ./internal/registry \
+    && go test -race -run '^TestTollgateOverlay' ./internal/registry \
     && mkdir -p /out \
     && CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /out/cli-proxy-api ./cmd/server \
     && cp LICENSE /out/LICENSE

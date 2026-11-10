@@ -52,3 +52,11 @@ Option 3, nach dem Muster von ADR-0016:
 - Bettet ein Pin-Update das Modell ein, wird das Overlay wirkungslos. Dann werden
   Overlay, Test, `apply.sh`-Zeilen und Dockerfile-Test entfernt, und dieses ADR wird abgelöst.
 - Weitere fehlende Modelle kommen mit einem eigenen Issue und Eintrag in dieselbe Datei.
+
+## Nachtrag 2026-11-10 (#3)
+
+`claude-fable-5-2` fehlt am Pin ebenfalls (Claude Code: „400 unknown provider for model“).
+Das Overlay ist jetzt eine Tabelle; Fable 5.2 klont `claude-fable-5-1` und setzt das
+Thinking wie im MIT-lizenzierten Katalog von CPA v8.0.63: nur adaptiv, ohne Budget-Spanne
+und ohne Abschalten, Stufen `low` bis `max`. Der Build-Test heißt jetzt `TestTollgateOverlay`
+und prüft alle Einträge.

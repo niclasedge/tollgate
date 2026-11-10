@@ -2,47 +2,49 @@ package registry
 
 import "testing"
 
-// TestTollgateHaiku55 checks the ADR-0020 overlay against the pinned catalog.
-func TestTollgateHaiku55(t *testing.T) {
-	var haiku, sonnet *ModelInfo
-	n := 0
-	for _, m := range GetClaudeModels() {
-		switch m.ID {
-		case tollgateOverlayID:
-			haiku = m
-			n++
-		case tollgateOverlayBase:
-			sonnet = m
+// TestTollgateOverlay checks the ADR-0020 overlay against the pinned catalog.
+func TestTollgateOverlay(t *testing.T) {
+	byID := func() (map[string]*ModelInfo, map[string]int) {
+		models, count := map[string]*ModelInfo{}, map[string]int{}
+		for _, m := range GetClaudeModels() {
+			models[m.ID] = m
+			count[m.ID]++
+		}
+		return models, count
+	}
+	models, count := byID()
+	for _, o := range tollgateOverlays {
+		m, base := models[o.id], models[o.base]
+		if m == nil || count[o.id] != 1 {
+			t.Fatalf("%s listed %d times, want once", o.id, count[o.id])
+		}
+		if base == nil {
+			t.Fatalf("base %s missing", o.base)
+		}
+		if m.DisplayName != o.name || m.Type != "claude" || m.ContextLength != 1000000 || m.MaxCompletionTokens != 128000 {
+			t.Fatalf("unexpected entry: %+v", m)
+		}
+		if m.Thinking == nil || len(m.Thinking.Levels) != 5 || !m.Thinking.DynamicAllowed {
+			t.Fatalf("%s: unexpected thinking: %+v", o.id, m.Thinking)
+		}
+		if m.Thinking == base.Thinking {
+			t.Fatalf("%s shares thinking with its base", o.id)
+		}
+		if got := LookupStaticModelInfo(o.id); got == nil {
+			t.Fatalf("static lookup misses %s", o.id)
 		}
 	}
-	if haiku == nil || n != 1 {
-		t.Fatalf("%s listed %d times, want once", tollgateOverlayID, n)
-	}
-	if sonnet == nil {
-		t.Fatalf("base %s missing", tollgateOverlayBase)
-	}
-	if haiku.DisplayName != "Claude Haiku 5.5" || haiku.Type != "claude" || haiku.ContextLength != 1000000 || haiku.MaxCompletionTokens != 128000 {
-		t.Fatalf("unexpected entry: %+v", haiku)
-	}
-	if haiku.Thinking == nil || !haiku.Thinking.DynamicAllowed || len(haiku.Thinking.Levels) != 5 {
-		t.Fatalf("unexpected thinking: %+v", haiku.Thinking)
-	}
-	if haiku.Thinking == sonnet.Thinking {
-		t.Fatal("overlay shares thinking with its base")
-	}
-	if got := LookupStaticModelInfo(tollgateOverlayID); got == nil {
-		t.Fatal("static lookup misses the overlay")
+	// Fable 5.2 is adaptive-only, as in upstream v8.0.63.
+	if th := models["claude-fable-5-2"].Thinking; th.ZeroAllowed || th.Min != 0 || th.Max != 0 {
+		t.Fatalf("fable 5.2 not adaptive-only: %+v", th)
 	}
 
 	// Idempotent: a second run, as after a catalog reload, adds nothing.
-	tollgateAddHaiku55()
-	n = 0
-	for _, m := range GetClaudeModels() {
-		if m.ID == tollgateOverlayID {
-			n++
+	tollgateAddOverlays()
+	_, count = byID()
+	for _, o := range tollgateOverlays {
+		if count[o.id] != 1 {
+			t.Fatalf("after rerun %s has %d entries, want 1", o.id, count[o.id])
 		}
-	}
-	if n != 1 {
-		t.Fatalf("after rerun %d entries, want 1", n)
 	}
 }

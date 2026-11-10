@@ -134,6 +134,9 @@ func TestEveryPriceKeyResolvesToItself(t *testing.T) {
 	if p, _ := PriceFor("claude-fable-5-1"); p.CacheRead != 250 {
 		t.Errorf("fable 5.1 matched fable 5: %+v", p)
 	}
+	if p, _ := PriceFor("claude-fable-5-2"); p.CacheRead != 250 {
+		t.Errorf("fable 5.2 matched fable 5: %+v", p)
+	}
 }
 
 func TestEventDataJoinsLines(t *testing.T) {

@@ -67,7 +67,7 @@ Einfügestellen, Credential-Persistenz und Mutex-Laufzeit prüfen.
 
 ## Katalog-Overlay (#137)
 
-`bridge/models_overlay.go.txt` ergänzt im Build `claude-haiku-5-5`, das der eingebettete
-Katalog am Pin nicht kennt. Begründung: [PATCHES.md](../../third_party/cpa-model-overlay/PATCHES.md).
-Bei Updates prüfen, ob `internal/registry/models/models.json` das Modell inzwischen
-enthält. Wenn ja, Overlay, Test, `apply.sh`-Zeilen und Dockerfile-Test entfernen.
+`bridge/models_overlay.go.txt` ergänzt im Build `claude-haiku-5-5` und `claude-fable-5-2`,
+die der eingebettete Katalog am Pin nicht kennt. Begründung: [PATCHES.md](../../third_party/cpa-model-overlay/PATCHES.md).
+Bei Updates prüfen, ob `internal/registry/models/models.json` die Modelle inzwischen
+enthält. Wenn ja, deren Einträge entfernen; ist die Tabelle leer, Overlay, Test, `apply.sh`-Zeilen und Dockerfile-Test.
